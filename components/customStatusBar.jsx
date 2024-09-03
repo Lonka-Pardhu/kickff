@@ -12,7 +12,6 @@ const StatusBarComponent = ({ children, barStyle, barBackgroundColor }) => {
         {
           flex: 1,
           backgroundColor: { barBackgroundColor },
-          // paddingTop: Platform.OS === "android" ? 30 : 0,
         },
       ]}
     >

@@ -1,12 +1,7 @@
 import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
 const TrendsSvg = (props) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={27.661}
-    height={22.302}
-    {...props}
-  >
+  <Svg xmlns="http://www.w3.org/2000/svg" width={27.661} height={23} {...props}>
     <G fill={props.color} data-name="Group 3083">
       <Path
         d="M17.119 1.356c.024.786.049 1.745.049 2.162.025.516-.1.762-.393.811-.393.074-.442-.123-.369-2.064.049-1.45.172-2.187.369-2.261.221-.048.319.32.344 1.352Z"

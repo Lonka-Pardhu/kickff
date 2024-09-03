@@ -1,12 +1,7 @@
 import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
 const AccountSvg = (props) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={17.7}
-    height={16.524}
-    {...props}
-  >
+  <Svg xmlns="http://www.w3.org/2000/svg" width={18} height={16.524} {...props}>
     <G fill={props.color} data-name="jersey (4)">
       <Path
         d="m8.236 9.708-.215.215v1.168l.215.215h1.168l.215-.215V9.923l-.215-.215Z"

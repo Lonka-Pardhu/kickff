@@ -2,8 +2,8 @@ import Svg, { Path } from "react-native-svg";
 const AmericanFootballSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={51}
-    height={51}
+    width={40}
+    height={40}
     viewBox="0 0 32 32"
     {...props}
   >

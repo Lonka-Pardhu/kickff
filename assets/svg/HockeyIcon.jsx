@@ -6,6 +6,8 @@ const HockeySvg = (props) => (
     style={{
       enableBackground: "new 0 0 485 485",
     }}
+    width={40}
+    height={40}
     viewBox="0 0 485 485"
     {...props}
   >

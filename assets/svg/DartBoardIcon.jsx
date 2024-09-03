@@ -6,6 +6,8 @@ const DartBoardSvg = (props) => (
     style={{
       enableBackground: "new 0 0 512 512",
     }}
+    width={40}
+    height={40}
     viewBox="0 0 512 512"
     {...props}
   >

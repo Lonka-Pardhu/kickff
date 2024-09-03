@@ -6,64 +6,247 @@ import {
   Image,
   useWindowDimensions,
   Dimensions,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
 } from "react-native";
 import StatusBarComponent from "../../components/customStatusBar";
-import React from "react";
+import React, { useState } from "react";
 import images from "../../constants/images";
-
-import Animated, {
-  interpolate,
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
 import UpArrowSvg from "../../assets/svg/UpArrowIcon";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CustomImageCarousel from "../../components/CustomImageCarousel";
+import UpComingSvg from "../../assets/svg/UpComingIcon";
+import CompletedSvg from "../../assets/svg/CompletedIcon";
+import BarcelonaSvg from "../../assets/svg/BarcelonaIcon";
+import MadridSvg from "../../assets/svg/MadridIcon";
+import ClockSvg from "../../assets/svg/ClockIcon";
+import SportsCategory from "../../components/SportsCategory";
+import LightBulbSvg from "../../assets/svg/LightBulbIcon";
+import ArrowRightSvg from "../../assets/svg/ArrowRightIcon";
+import CheckCircleSvg from "../../assets/svg/CheckCircleIcon";
+
 const pickem = () => {
   const width = Dimensions.get("window").width;
+  const [activeSport, setActiveSport] = useState("Soccer");
+  const [activeCategory, setActiveCategory] = useState("all");
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
-        <View className="border-b border-[#0000004D] bg-white p-3">
-          <Text className="text-[#1493FF] text-[16px] font-sfregular">
-            Picks
-          </Text>
-        </View>
-        <View>
-          <CustomImageCarousel width={width} height={130} />
-        </View>
-        <ScrollView className="flex-1 w-full h-full bg-white">
-          <Text>hey</Text>
-          <View className="mt-2">
-            <Image
-              source={images.HomeImg1}
-              className="w-full h-[210px] rounded-lg my-1"
-              resizeMode="cover"
-            />
-            <View>
-              <View className="flex flex-row items-center gap-x-1">
-                <UpArrowSvg />
-                <Text className="font-sfsemibold text-[#b2b2b2] text-[13px]">
-                  Lorem Ipsum
+        <ScrollView className="flex-1 bg-white">
+          <View className="border-b border-[#0000004D] p-3">
+            <Text className="text-[#1493FF] text-[16px] font-sfregular">
+              Picks
+            </Text>
+          </View>
+          <View>
+            <CustomImageCarousel width={width} height={130} />
+          </View>
+          {/* Api work */}
+          <SportsCategory />
+          <View
+            className={`flex flex-row items-center gap-x-2 pl-4 ${
+              Platform.OS === "ios" ? "py-4" : "py-2"
+            }`}
+          >
+            <TouchableOpacity onPress={() => setActiveCategory("all")}>
+              <Text
+                className={`font-sfregular text-[13px] ${
+                  activeCategory === "all" ? "text-black" : "text-[#979797]"
+                }`}
+              >
+                all
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActiveCategory("upcoming")}>
+              <View className="flex flex-row items-center">
+                <UpComingSvg
+                  fill={activeCategory === "upcoming" ? "#1493FF" : "#979797"}
+                />
+                <Text
+                  className={`font-sfregular text-[13px] ${
+                    activeCategory === "upcoming"
+                      ? "text-black"
+                      : "text-[#979797]"
+                  }`}
+                >
+                  upcoming
                 </Text>
               </View>
-              <View>
-                <Text className="font-sfbold text-[13px] leading-2">
-                  Lorem Ipsum is simply dummy tex.
-                </Text>
-                <Text className="text-[#7a7a7a] font-sfregular leading-[18px]">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
-                </Text>
-                <Text className="font-sfregular text-[#FF6B6B] text-[13px]">
-                  4 hours ago
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActiveCategory("completed")}>
+              <View className="flex flex-row items-center">
+                <CompletedSvg
+                  fill={activeCategory === "completed" ? "#1493FF" : "#979797"}
+                />
+                <Text
+                  className={`font-sfregular text-[13px] ${
+                    activeCategory === "completed"
+                      ? "text-black"
+                      : "text-[#979797]"
+                  }`}
+                >
+                  completed
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
+          </View>
+          <View className="px-4">
+            <TouchableOpacity className="w-full rounded-lg bg-white py-4 pr-4 shadow-md">
+              <View className="flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center">
+                  <View className="flex flex-row items-center">
+                    <View className="h-1 w-1 rounded-full bg-[#EF3E3A]"></View>
+                    <Image
+                      source={images.LeagueImg1}
+                      className="h-[40px] w-[40px]"
+                    />
+                  </View>
+                  <View className="flex flex-col">
+                    <Text className="font-sfsemibold">SerieA</Text>
+                    <View className="flex items-center flex-row gap-x-1">
+                      <Text className="font-sfsemibold text-[8px] font-medium  tracking-widest">
+                        12 MAR
+                      </Text>
+                      <View className="h-1 w-1 bg-black rounded-full"></View>
+                      <Text className="font-sfsemibold text-[8px] tracking-widest font-medium">
+                        4:30AM
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                {/* make custom rating component from gpt */}
+                <View className="flex flex-row items-center gap-x-[2px] ">
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#979797]"></View>
+                </View>
+              </View>
+              <View className="pr-6 pl-10 py-2">
+                <View className="flex flex-row items-center justify-between w-full">
+                  <View className="w-3/5 flex flex-col gap-y-2 py-2">
+                    <View className="flex flex-row items-center justify-between">
+                      <View className="flex flex-row items-center gap-x-2 ">
+                        <BarcelonaSvg />
+                        <Text className="font-sfsemibold">Barcelona</Text>
+                      </View>
+                      <Text className="font-sfsemibold">2</Text>
+                    </View>
+                    <View className="flex flex-row items-center justify-between">
+                      <View className="flex flex-row items-center gap-x-2 ">
+                        <MadridSvg />
+                        <Text className="font-sfsemibold text-[#979797]">
+                          Real Madrid
+                        </Text>
+                      </View>
+                      <Text className="font-sfsemibold text-[#979797]">0</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row items-center justify-center gap-x-1 ">
+                    <ClockSvg />
+                    <Text className="font-sfregular font-medium text-[#FFAB2E]">
+                      2.54
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View className="px-4 w-full flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center gap-x-2 w-[85%]">
+                  <LightBulbSvg />
+                  <Text
+                    numberOfLines={2}
+                    className="font-sfregular font-medium text-[#838E94] text-[12px]"
+                  >
+                    Lorem Ipsum Is Simply Dummy Text Of The Printing And
+                    Typesetting Industry. Lorem Ipsum Has Been The Industry’s
+                    Standard Dummy Text Ever Since The 1500S, When An Unknown
+                    Printer Took A Galley Of Type And Scrambled It To Make A
+                    Type Specimen Book.
+                  </Text>
+                </View>
+                <ArrowRightSvg />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity className="w-full rounded-lg bg-white py-4 pr-4 shadow-md">
+              <View className="flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center">
+                  <View className="flex flex-row items-center">
+                    <View className="h-1 w-1 rounded-full bg-[#EF3E3A]"></View>
+                    <Image
+                      source={images.LeagueImg1}
+                      className="h-[40px] w-[40px]"
+                    />
+                  </View>
+                  <View className="flex flex-col">
+                    <Text className="font-sfsemibold">SerieA</Text>
+                    <View className="flex items-center flex-row gap-x-1">
+                      <Text className="font-sfsemibold text-[8px] font-medium  tracking-widest">
+                        12 MAR
+                      </Text>
+                      <View className="h-1 w-1 bg-black rounded-full"></View>
+                      <Text className="font-sfsemibold text-[8px] tracking-widest font-medium">
+                        4:30AM
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                {/* make custom rating component from gpt */}
+                <View className="flex flex-row items-center gap-x-[2px] ">
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
+                  <View className="h-[7px] w-1 rounded-full bg-[#979797]"></View>
+                </View>
+              </View>
+              <View className="pr-6 pl-10 py-2">
+                <View className="flex flex-row items-center justify-between w-full">
+                  <View className="w-3/5 flex flex-col gap-y-2 py-2">
+                    <View className="flex flex-row items-center justify-between">
+                      <View className="flex flex-row items-center gap-x-2 ">
+                        <BarcelonaSvg />
+                        <Text className="font-sfsemibold">Barcelona</Text>
+                      </View>
+                      <Text className="font-sfsemibold">2</Text>
+                    </View>
+                    <View className="flex flex-row items-center justify-between">
+                      <View className="flex flex-row items-center gap-x-2 ">
+                        <MadridSvg />
+                        <Text className="font-sfsemibold text-[#979797]">
+                          Real Madrid
+                        </Text>
+                      </View>
+                      <Text className="font-sfsemibold text-[#979797]">0</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row items-center justify-center gap-x-1 ">
+                    <CheckCircleSvg />
+                    <Text className="font-sfregular font-medium text-[#FFAB2E]">
+                      2.54
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View className="px-4 w-full flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center gap-x-2 w-[85%]">
+                  <LightBulbSvg />
+                  <Text
+                    numberOfLines={2}
+                    className="font-sfregular font-medium text-[#838E94] text-[12px]"
+                  >
+                    Lorem Ipsum Is Simply Dummy Text Of The Printing And
+                    Typesetting Industry. Lorem Ipsum Has Been The Industry’s
+                    Standard Dummy Text Ever Since The 1500S, When An Unknown
+                    Printer Took A Galley Of Type And Scrambled It To Make A
+                    Type Specimen Book.
+                  </Text>
+                </View>
+                <ArrowRightSvg />
+              </View>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </StatusBarComponent>
@@ -71,4 +254,16 @@ const pickem = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  cardShadow: {
+    shadowOffset: { width: -2, height: 4 },
+    shadowColor: "#171717",
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+});
+
 export default pickem;
+
+//! use svgxml form react native svg while getting data from api
+//! make the rating dots component into custom

@@ -25,6 +25,7 @@ import SportsCategory from "../../components/SportsCategory";
 import LightBulbSvg from "../../assets/svg/LightBulbIcon";
 import ArrowRightSvg from "../../assets/svg/ArrowRightIcon";
 import CheckCircleSvg from "../../assets/svg/CheckCircleIcon";
+import RatingComponent from "../../components/RatingComponent";
 
 const pickem = () => {
   const width = Dimensions.get("window").width;
@@ -92,8 +93,11 @@ const pickem = () => {
               </View>
             </TouchableOpacity>
           </View>
-          <View className="px-4">
-            <TouchableOpacity className="w-full rounded-lg bg-white py-4 pr-4 shadow-md">
+          <View className="px-4 py-2 flex flex-col items-center justify-center gap-y-2">
+            <TouchableOpacity
+              style={styles.cardShadow}
+              className="w-full rounded-lg bg-white py-4 pr-4 shadow-md"
+            >
               <View className="flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center">
                   <View className="flex flex-row items-center">
@@ -116,14 +120,8 @@ const pickem = () => {
                     </View>
                   </View>
                 </View>
-                {/* make custom rating component from gpt */}
-                <View className="flex flex-row items-center gap-x-[2px] ">
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#979797]"></View>
-                </View>
+
+                <RatingComponent rating={2} />
               </View>
               <View className="pr-6 pl-10 py-2">
                 <View className="flex flex-row items-center justify-between w-full">
@@ -133,7 +131,7 @@ const pickem = () => {
                         <BarcelonaSvg />
                         <Text className="font-sfsemibold">Barcelona</Text>
                       </View>
-                      <Text className="font-sfsemibold">2</Text>
+                      {/* <Text className="font-sfsemibold">2</Text> */}
                     </View>
                     <View className="flex flex-row items-center justify-between">
                       <View className="flex flex-row items-center gap-x-2 ">
@@ -142,7 +140,7 @@ const pickem = () => {
                           Real Madrid
                         </Text>
                       </View>
-                      <Text className="font-sfsemibold text-[#979797]">0</Text>
+                      {/* <Text className="font-sfsemibold text-[#979797]">0</Text> */}
                     </View>
                   </View>
                   <View className="flex flex-row items-center justify-center gap-x-1 ">
@@ -170,7 +168,10 @@ const pickem = () => {
                 <ArrowRightSvg />
               </View>
             </TouchableOpacity>
-            <TouchableOpacity className="w-full rounded-lg bg-white py-4 pr-4 shadow-md">
+            <TouchableOpacity
+              style={styles.cardShadow}
+              className="w-full rounded-lg bg-white py-4 pr-4 shadow-md"
+            >
               <View className="flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center">
                   <View className="flex flex-row items-center">
@@ -193,14 +194,7 @@ const pickem = () => {
                     </View>
                   </View>
                 </View>
-                {/* make custom rating component from gpt */}
-                <View className="flex flex-row items-center gap-x-[2px] ">
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#4AAE12]"></View>
-                  <View className="h-[7px] w-1 rounded-full bg-[#979797]"></View>
-                </View>
+                <RatingComponent rating={3} />
               </View>
               <View className="pr-6 pl-10 py-2">
                 <View className="flex flex-row items-center justify-between w-full">

@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import images from "../../constants/images";
 import { useRouter } from "expo-router";
 
-const ForgotPass = () => {
+const NewPass = () => {
   const router = useRouter();
   return (
     <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
@@ -28,30 +28,44 @@ const ForgotPass = () => {
         <KeyboardAwareScrollView>
           <View className="p-3 mt-[25%]">
             <View className="flex flex-col items-center justify-center ">
-              <Image
+              {/* <Image
                 source={images.FingerprintImg}
                 className="w-[40px] h-[40px] mb-1"
                 resizeMode="contain"
-              />
-              <Text className="font-sfsemibold text-lg">Forgot password?</Text>
+              /> */}
+
+              <Text className="font-sfbold text-4xl text-[#0A80FB]">****</Text>
+              <Text className="font-sfsemibold text-lg">Set new password</Text>
               <Text className="font-sfregular text-md text-[#707070]">
-                No worries, we’ll send you reset instructions.
+                Must be atleast 8 characters.
               </Text>
             </View>
             <View className="flex flex-col items-center gap-y-4 w-full mt-2">
               <TextInput
                 className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
-                placeholder="Email"
+                placeholder="Password"
+              />
+              <TextInput
+                className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                placeholder="Confirm password"
               />
             </View>
             <TouchableOpacity
-              onPress={() => router.push("/verify-otp")}
-              className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4"
+              onPress={() => router.push("/sign-in")}
+              className="bg-[#0A80FB] w-full  p-2 rounded-sm mt-4"
             >
-              <Text className="font-sfsemibold text-white text-[15px]">
-                Reset
-                <Text className="font-pcuregular font-medium">password</Text>
-              </Text>
+              <View className="flex flex-row justify-center items-center">
+                <Text className="font-sfsemibold text-white text-[15px]">
+                  Set
+                </Text>
+                <Text className="font-pcuregular text-white leading-[25px]">
+                  {" "}
+                  new{" "}
+                </Text>
+                <Text className="font-sfsemibold text-white text-[15px]">
+                  password
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
@@ -60,4 +74,4 @@ const ForgotPass = () => {
   );
 };
 
-export default ForgotPass;
+export default NewPass;

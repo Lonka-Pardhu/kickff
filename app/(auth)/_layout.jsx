@@ -7,13 +7,13 @@ const AuthLayout = () => {
   return (
     <>
       <Stack>
-        <Stack.Screen name="forgot-pass" options={{ headerShown: false }} />
-        <Stack.Screen name="sign-up" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="auth-home" options={{ headerShown: false }} />
         <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+        <Stack.Screen name="sign-up" options={{ headerShown: false }} />
+        <Stack.Screen name="forgot-pass" options={{ headerShown: false }} />
         <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
-        {/* <Stack.Screen name="sign-up" options={{ headerShown: false }} />
-        <Stack.Screen name="change-pass" options={{ headerShown: false }} /> */}
+        <Stack.Screen name="new-pass" options={{ headerShown: false }} />
       </Stack>
     </>
   );

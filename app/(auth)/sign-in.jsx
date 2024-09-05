@@ -44,7 +44,19 @@ const SignIn = () => {
                 />
               </View>
             </View>
-            <TouchableOpacity className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4">
+            <TouchableOpacity
+              onPress={() => router.push("/forgot-pass")}
+              className="w-full flex-row-reverse p-1 mt-1"
+            >
+              <Text className="font-sfregular text-[#707070] text-[15px]">
+                Forgot password?
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push("/trends")}
+              className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4"
+            >
               <Text className="font-sfsemibold text-white text-[15px]">
                 Sign <Text className="font-pcuregular font-medium">in</Text>
               </Text>

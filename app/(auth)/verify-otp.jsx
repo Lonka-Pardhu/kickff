@@ -12,8 +12,10 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import images from "../../constants/images";
 import Feather from "@expo/vector-icons/Feather";
 import { OtpInput } from "react-native-otp-entry";
+import { useRouter } from "expo-router";
 
 const VerifyOtp = () => {
+  const router = useRouter();
   const [otp, setOtp] = useState("");
   const [hasError, setHasError] = useState(false);
   return (
@@ -36,8 +38,11 @@ const VerifyOtp = () => {
               />
               <Text className="font-sfsemibold text-lg">Enter your code</Text>
               <Text className="font-sfregular text-md text-[#707070]">
-                We sent a code to{" "}
-                <Text className="text-black font-semibold">test@gmail.com</Text>
+                We sent a code to
+                <Text className="text-black font-semibold">
+                  {" "}
+                  test@gmail.com
+                </Text>
               </Text>
             </View>
             <View className=" flex flex-row items-center justify-center mt-4">
@@ -67,10 +72,19 @@ const VerifyOtp = () => {
                 }}
               />
             </View>
-            <TouchableOpacity className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4">
+            <View className="flex items-center flex-row justify-center m-2">
+              <Text className="font-sfregular text-md text-[#707070]">
+                Didn't recieve the email ?
+              </Text>
+              <TouchableOpacity>
+                <Text className="text-[#31C163] font-sfsemibold">
+                  Click to resend
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity className="bg-[#0A80FB] w-full items-center p-2 rounded-sm mt-2">
               <Text className="font-sfsemibold text-white text-[15px]">
-                Reset
-                <Text className="font-pcuregular font-medium">password</Text>
+                Continue
               </Text>
             </TouchableOpacity>
           </View>

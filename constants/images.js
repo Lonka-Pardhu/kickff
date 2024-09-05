@@ -5,6 +5,9 @@ import AuthIndex from "../assets/images/auth0.png";
 import LogoImg from "../assets/images/LogoIcon.png";
 import FingerprintImg from "../assets/images/fingerprint.png";
 import emailImg from "../assets/images/email.png";
+import WelomeImg1 from "../assets/images/welcomeImg1.png";
+import WelomeImg2 from "../assets/images/welcomeImg2.png";
+import WelomeImg3 from "../assets/images/welcomeImg3.png";
 
 export default {
   HomeImg1,
@@ -14,4 +17,7 @@ export default {
   LogoImg,
   emailImg,
   FingerprintImg,
+  WelomeImg1,
+  WelomeImg2,
+  WelomeImg3,
 };

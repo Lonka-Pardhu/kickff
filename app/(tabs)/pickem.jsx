@@ -36,7 +36,7 @@ const pickem = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
         <ScrollView className="flex-1 bg-white">
-          <View className="border-b border-[#0000004D] p-3">
+          <View className="border-b-[0.5px] border-[#0000004D] p-3">
             <Text className="text-[#1493FF] text-[16px] font-sfregular">
               Picks
             </Text>

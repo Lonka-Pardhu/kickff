@@ -11,8 +11,10 @@ import StatusBarComponent from "../../components/customStatusBar";
 import Feather from "@expo/vector-icons/Feather";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import images from "../../constants/images";
+import { useRouter } from "expo-router";
 
 const SignUp = () => {
+  const router = useRouter();
   return (
     <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
       <ScrollView className="bg-white flex-1">
@@ -61,7 +63,10 @@ const SignUp = () => {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4">
+            <TouchableOpacity
+              onPress={() => router.push("/trends")}
+              className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4"
+            >
               <Text className="font-sfsemibold text-white text-[15px]">
                 Sign <Text className="font-pcuregular font-medium">up</Text>
               </Text>

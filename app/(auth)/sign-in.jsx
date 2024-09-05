@@ -52,9 +52,8 @@ const SignIn = () => {
                 Forgot password?
               </Text>
             </TouchableOpacity>
-
             <TouchableOpacity
-              onPress={() => router.push("/trends")}
+              onPress={() => router.replace("/trends")}
               className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4"
             >
               <Text className="font-sfsemibold text-white text-[15px]">
@@ -65,7 +64,10 @@ const SignIn = () => {
               <Text className="font-sfregular self-start p-2 text-[#707070] text-[15px]">
                 Don't have an account?
               </Text>
-              <TouchableOpacity className="flex flex-row items-center">
+              <TouchableOpacity
+                onPress={() => router.push("/sign-up")}
+                className="flex flex-row items-center"
+              >
                 <Text className="font-sfsemibold text-[#0A80FB]">
                   Sign <Text className="font-pcuregular font-normal">up</Text>
                 </Text>

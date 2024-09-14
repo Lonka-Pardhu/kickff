@@ -1,5 +1,5 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
 const BarcelonaSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
@@ -92,5 +92,5 @@ const BarcelonaSvg = (props) => (
       data-name="Path 100"
     />
   </Svg>
-)
-export default BarcelonaSvg
+);
+export default BarcelonaSvg;

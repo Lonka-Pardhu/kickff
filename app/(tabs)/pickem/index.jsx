@@ -10,22 +10,23 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-import StatusBarComponent from "../../components/customStatusBar";
+import StatusBarComponent from "../../../components/customStatusBar";
 import React, { useState } from "react";
-import images from "../../constants/images";
-import UpArrowSvg from "../../assets/svg/UpArrowIcon";
+import images from "../../../constants/images";
+import UpArrowSvg from "../../../assets/svg/UpArrowIcon";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import CustomImageCarousel from "../../components/CustomImageCarousel";
-import UpComingSvg from "../../assets/svg/UpComingIcon";
-import CompletedSvg from "../../assets/svg/CompletedIcon";
-import BarcelonaSvg from "../../assets/svg/BarcelonaIcon";
-import MadridSvg from "../../assets/svg/MadridIcon";
-import ClockSvg from "../../assets/svg/ClockIcon";
-import SportsCategory from "../../components/SportsCategory";
-import LightBulbSvg from "../../assets/svg/LightBulbIcon";
-import ArrowRightSvg from "../../assets/svg/ArrowRightIcon";
-import CheckCircleSvg from "../../assets/svg/CheckCircleIcon";
-import RatingComponent from "../../components/RatingComponent";
+import CustomImageCarousel from "../../../components/CustomImageCarousel";
+import UpComingSvg from "../../../assets/svg/UpComingIcon";
+import CompletedSvg from "../../../assets/svg/CompletedIcon";
+import BarcelonaSvg from "../../../assets/svg/BarcelonaIcon";
+import MadridSvg from "../../../assets/svg/MadridIcon";
+import ClockSvg from "../../../assets/svg/ClockIcon";
+import SportsCategory from "../../../components/SportsCategory";
+import LightBulbSvg from "../../../assets/svg/LightBulbIcon";
+import ArrowRightSvg from "../../../assets/svg/ArrowRightIcon";
+import CheckCircleSvg from "../../../assets/svg/CheckCircleIcon";
+import RatingComponent from "../../../components/RatingComponent";
+import { router } from "expo-router";
 
 const pickem = () => {
   const width = Dimensions.get("window").width;
@@ -95,6 +96,12 @@ const pickem = () => {
           </View>
           <View className="px-4 py-2 flex flex-col items-center justify-center gap-y-2">
             <TouchableOpacity
+              onPress={() =>
+                router.push({
+                  pathname: `/pickem/singlebet`,
+                  params: { id: 1 },
+                })
+              }
               style={styles.cardShadow}
               className="w-full rounded-lg bg-white py-4 pr-4 shadow-md"
             >
@@ -120,8 +127,7 @@ const pickem = () => {
                     </View>
                   </View>
                 </View>
-
-                <RatingComponent rating={2} />
+                <RatingComponent rating={4} />
               </View>
               <View className="pr-6 pl-10 py-2">
                 <View className="flex flex-row items-center justify-between w-full">
@@ -194,7 +200,7 @@ const pickem = () => {
                     </View>
                   </View>
                 </View>
-                <RatingComponent rating={3} />
+                <RatingComponent rating={5} />
               </View>
               <View className="pr-6 pl-10 py-2">
                 <View className="flex flex-row items-center justify-between w-full">
@@ -260,4 +266,4 @@ const styles = StyleSheet.create({
 export default pickem;
 
 //! use svgxml form react native svg while getting data from api
-//! make the rating dots component into custom
+//* make the rating dots component into custom

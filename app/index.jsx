@@ -7,7 +7,7 @@ import StatusBarComponent from "../components/customStatusBar";
 const index = () => {
   return (
     <>
-      <Redirect href="(auth)" />
+      <Redirect href="/pickem" />
       <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
         <View className="flex-1 items-center justify-center bg-[#015AD2]">
           <MainSvg />

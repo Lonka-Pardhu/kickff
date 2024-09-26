@@ -25,8 +25,13 @@ import SportsCategory from "../../../components/SportsCategory";
 import LightBulbSvg from "../../../assets/svg/LightBulbIcon";
 import ArrowRightSvg from "../../../assets/svg/ArrowRightIcon";
 import CheckCircleSvg from "../../../assets/svg/CheckCircleIcon";
+import BetbuilderSvg from "../../../assets/svg/BetBuilderIcon";
+// import YellowRoundSvg from "../../../assets/svg/YellowRoundIcon";
 import RatingComponent from "../../../components/RatingComponent";
 import { router } from "expo-router";
+import ColouredCircle from "../../../components/ColouredCircle";
+import StarSvg from "../../../assets/svg/StarIcon";
+import RoundCircleSvg from "../../../assets/svg/RoundCircleIcon";
 
 const pickem = () => {
   const width = Dimensions.get("window").width;
@@ -98,12 +103,62 @@ const pickem = () => {
             <TouchableOpacity
               onPress={() =>
                 router.push({
+                  pathname: `/pickem/betbuilder`,
+                  params: { id: 1 },
+                })
+              }
+              style={styles.cardShadow}
+              className="w-full rounded-lg bg-white py-4 px-4 shadow-md"
+            >
+              <View className="flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center">
+                  <View className="flex flex-row items-center gap-x-1">
+                    <BetbuilderSvg />
+                    <Text className="font-sfregular text-[8px] text-[#b7b7b7] tracking-widest">
+                      12 MAR 4:30 AM
+                    </Text>
+                  </View>
+                </View>
+                <RatingComponent rating={5} />
+              </View>
+              <View className="flex flex-row items-center pr-6 py-3 justify-between">
+                <View className="flex flex-row items-center gap-x-3">
+                  <View className="flex flex-row gap-x-1">
+                    <BarcelonaSvg />
+                    <MadridSvg />
+                  </View>
+                  <View className="flex flex-col">
+                    <Text className="font-sfsemibold">Barcelona</Text>
+                    <Text className="font-sfsemibold">Real Madrid</Text>
+                  </View>
+                </View>
+                <View className="flex flex-row items-center justify-center gap-x-1 ">
+                  <CheckCircleSvg />
+                  <Text className="font-sfregular font-medium text-[#FFAB2E]">
+                    2.54
+                  </Text>
+                </View>
+              </View>
+              <View className="px-4 w-full flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center gap-x-[6px] ml-2">
+                  <RoundCircleSvg />
+                  <StarSvg />
+                  <RoundCircleSvg />
+                  <RoundCircleSvg />
+                  <StarSvg />
+                </View>
+                <ArrowRightSvg />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                router.push({
                   pathname: `/pickem/singlebet`,
                   params: { id: 1 },
                 })
               }
               style={styles.cardShadow}
-              className="w-full rounded-lg bg-white py-4 pr-4 shadow-md"
+              className="w-full rounded-lg bg-white py-4 pr-4 pl-1 shadow-md"
             >
               <View className="flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center">
@@ -176,7 +231,7 @@ const pickem = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.cardShadow}
-              className="w-full rounded-lg bg-white py-4 pr-4 shadow-md"
+              className="w-full rounded-lg bg-white py-4 pr-4 pl-1 shadow-md"
             >
               <View className="flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center">

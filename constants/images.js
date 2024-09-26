@@ -9,6 +9,7 @@ import WelomeImg1 from "../assets/images/welcomeImg1.png";
 import WelomeImg2 from "../assets/images/welcomeImg2.png";
 import WelomeImg3 from "../assets/images/welcomeImg3.png";
 import CoinsBanner from "../assets/images/coinsBanner.png";
+import StarImage from "../assets/images/starImg.png";
 
 export default {
   HomeImg1,
@@ -22,4 +23,5 @@ export default {
   WelomeImg2,
   WelomeImg3,
   CoinsBanner,
+  StarImage,
 };

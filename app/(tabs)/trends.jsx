@@ -3,7 +3,10 @@ import React from "react";
 import StatusBarComponent from "../../components/customStatusBar";
 import images from "../../constants/images";
 import UpArrowSvg from "../../assets/svg/UpArrowIcon";
+import { useAuth } from "../../context/AuthContext";
 const Trends = () => {
+  const { token } = useAuth();
+  // console.log(token);
   return (
     <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
       <ScrollView className="flex-1 w-full h-full bg-white">

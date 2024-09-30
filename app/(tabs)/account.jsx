@@ -9,19 +9,26 @@ import HeadsetSvg from "../../assets/svg/HeadsetIcon";
 import CheckCircleSvg from "../../assets/svg/CheckCircleIcon";
 import FingerprintSvg from "../../assets/svg/FingerprintIcon";
 import CheckCircleBlackSvg from "../../assets/svg/CheckCircleBlackIcon";
-import { router } from "expo-router";
+import { router, useRouter } from "expo-router";
 import { useAuth } from "../../context/AuthContext";
 import Spinner from "react-native-loading-spinner-overlay";
 import { useState } from "react";
 
 const account = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { logout } = useAuth();
 
   const logoutUser = async () => {
     setIsLoading(true);
-    await logout();
-    setIsLoading(false);
+    try {
+      await logout();
+      router.replace("/sign-in");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>

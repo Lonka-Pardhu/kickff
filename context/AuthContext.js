@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 // Create the AuthContext
 export const AuthContext = createContext();
@@ -8,8 +9,9 @@ export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
+  const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userToken, setUserToken] = useState(null);
+  const [userToken, setUserToken] = useState("");
 
   // Check for token in async storage when the app starts
   useEffect(() => {
@@ -17,7 +19,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const storedToken = await AsyncStorage.getItem("userToken");
         if (storedToken) {
-          userToken(storedToken);
+          setUserToken(storedToken);
           setIsAuthenticated(true);
         }
       } catch (error) {
@@ -43,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await AsyncStorage.removeItem("userToken");
-      setUserToken(null);
+      setUserToken("");
       setIsAuthenticated(false);
     } catch (error) {
       console.log("Error removing token:", error);

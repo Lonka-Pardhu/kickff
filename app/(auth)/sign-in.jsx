@@ -23,6 +23,7 @@ const SignIn = () => {
   const router = useRouter();
   const [apiErr, setApiErr] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [hidePass, setHidePass] = useState(true);
 
   const onSubmit = async (values) => {
     try {
@@ -97,16 +98,27 @@ const SignIn = () => {
                     )}
                   </View>
                   <View className="w-full">
-                    <TextInput
-                      onChangeText={(e) => {
-                        setApiErr("");
-                        handleChange("password")(e);
-                      }}
-                      onBlur={handleBlur("password")}
-                      value={values.password}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
-                      placeholder="Password"
-                    />
+                    <View className="flex flex-row items-center w-full">
+                      <TextInput
+                        secureTextEntry={hidePass ? true : false}
+                        onChangeText={(e) => {
+                          setApiErr("");
+                          handleChange("password")(e);
+                        }}
+                        onBlur={handleBlur("password")}
+                        value={values.password}
+                        className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-l-sm flex-1"
+                        placeholder="Password"
+                      />
+                      <Text
+                        onPress={() => setHidePass(!hidePass)}
+                        className={`bg-[#f2f2f2] px-2 py-3 text-sm font-sfregular rounded-r-sm ${
+                          hidePass ? "text-green-500" : "text-red-500"
+                        } `}
+                      >
+                        {hidePass ? "Show" : "Hide"}
+                      </Text>
+                    </View>
                     {errors.password && touched.password && (
                       <Text className="self-start text-red-500 text-sm font-sfregular ">
                         {errors.password}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -24,6 +24,12 @@ const SignIn = () => {
   const [apiErr, setApiErr] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hidePass, setHidePass] = useState(true);
+  const [canGoBack, setCanGoBack] = useState(false);
+
+  useEffect(() => {
+    // Check if the router has a valid history stack
+    setCanGoBack(router.canGoBack());
+  }, [router]);
 
   const onSubmit = async (values) => {
     try {
@@ -34,8 +40,10 @@ const SignIn = () => {
       const loginRes = await loginUser(formData);
       if (loginRes.status === 200) {
         await setTokenInAsync(loginRes.data.token);
+        resetForm();
       }
     } catch (error) {
+      console.log(error);
       setApiErr(error.response.data.error);
     } finally {
       setIsLoading(false);
@@ -47,6 +55,7 @@ const SignIn = () => {
     touched,
     handleBlur,
     handleChange,
+    resetForm,
     handleSubmit,
     setFieldValue,
   } = useFormik({
@@ -62,13 +71,15 @@ const SignIn = () => {
       <Spinner visible={isLoading} />
       <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
         <ScrollView className="bg-white flex-1">
-          <TouchableOpacity
-            onPress={() => router.back()}
-            className="flex flex-row items-center p-2"
-          >
-            <Feather name="chevron-left" size={24} color="black" />
-            <Text className="font-sfsemibold text-[15px]">Back</Text>
-          </TouchableOpacity>
+          {canGoBack && (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              className="flex flex-row items-center p-2"
+            >
+              <Feather name="chevron-left" size={24} color="black" />
+              <Text className="font-sfsemibold text-[15px]">Back</Text>
+            </TouchableOpacity>
+          )}
           <KeyboardAwareScrollView>
             <View className="p-3 mt-[25%]">
               <View className="flex flex-col items-center justify-center">

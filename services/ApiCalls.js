@@ -33,3 +33,28 @@ export const sendEmailVerificationOtp = async (values) => {
     },
   });
 };
+
+export const getProfile = async (token) => {
+  return await axios.get(`${API_URL}/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const forgotPass = async (values) => {
+  return await axios.post(`${API_URL}/forget-password`, values, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const setNewPass = async (values, token) => {
+  return await axios.post(`${API_URL}/set-password`, values, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

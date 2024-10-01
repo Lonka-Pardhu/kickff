@@ -34,11 +34,12 @@ const SignUp = () => {
       formData.append("password", values.password);
       const signUpRes = await signUpUser(formData);
       if (signUpRes.status === 200) {
-        console.log(signUpRes);
+        // console.log(signUpRes);
         router.push({
           pathname: "/verify-otp",
           params: { email: values.email },
         });
+        resetForm();
       }
     } catch (error) {
       setApiErr(error.response.data.error);
@@ -54,6 +55,7 @@ const SignUp = () => {
     handleBlur,
     handleChange,
     handleSubmit,
+    resetForm,
     setFieldValue,
   } = useFormik({
     initialValues: {

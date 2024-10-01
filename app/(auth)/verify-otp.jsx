@@ -15,7 +15,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { OtpInput } from "react-native-otp-entry";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useFormik } from "formik";
-import verifyEmailOtp from "../../validations/verifyEmailOtp";
+import verifyEmailOtp from "../../validations/VerifyEmailOtp";
 import { useAuth } from "../../context/AuthContext";
 import { sendEmailVerificationOtp, verifyEmail } from "../../services/ApiCalls";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -30,11 +30,14 @@ const VerifyOtp = () => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [resentOtpMsg, setResentOtpMsg] = useState(false);
+  const [fromForgotPass, setFromForgotPass] = useState(false);
 
   useEffect(() => {
     if (params && params.email) {
       setEmail(params.email);
-      console.log(params.email);
+    }
+    if (params && params.fromForgotPass) {
+      setFromForgotPass(true);
     }
   }, []);
 
@@ -74,7 +77,16 @@ const VerifyOtp = () => {
         Alert.alert("Email verified Successfully", "", [
           {
             text: "Ok",
-            onPress: () => router.replace("/trends"),
+            onPress: () => {
+              if (fromForgotPass) {
+                router.replace({
+                  pathname: "/new-pass",
+                  params: { token: verifyOtpRes.data.token }, // Add the token as a query param
+                });
+              } else {
+                router.replace("/trends");
+              }
+            },
           },
         ]);
       }

@@ -12,12 +12,29 @@ const index = () => {
   const router = useRouter(); // Initialize router
   const [loading, setLoading] = React.useState(true);
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      setLoading(true);
+      // Simulate a delay (or perform any async operations)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (isAuthenticated) {
+        router.replace("/trends");
+      } else {
+        router.replace("/new-pass");
+      }
+      setLoading(false);
+    };
+
+    checkAuth();
+  }, [isAuthenticated, router]);
+
   // useEffect(() => {
   //   const checkAuth = async () => {
   //     setLoading(true);
-  //     // Simulate a delay (or perform any async operations)
-  //     await new Promise((resolve) => setTimeout(resolve, 1000));
-  //     if (isAuthenticated) {
+
+  //     // Ensure we check the actual stored token, not just isAuthenticated
+  //     const storedToken = await AsyncStorage.getItem("userToken");
+  //     if (storedToken) {
   //       router.push("/trends");
   //     } else {
   //       router.push("/(auth)");
@@ -27,23 +44,6 @@ const index = () => {
 
   //   checkAuth();
   // }, [isAuthenticated, router]);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      setLoading(true);
-
-      // Ensure we check the actual stored token, not just isAuthenticated
-      const storedToken = await AsyncStorage.getItem("userToken");
-      if (storedToken) {
-        router.push("/trends");
-      } else {
-        router.push("/(auth)");
-      }
-      setLoading(false);
-    };
-
-    checkAuth();
-  }, [isAuthenticated, router]);
 
   if (loading) {
     return <Spinner visible={loading} />;

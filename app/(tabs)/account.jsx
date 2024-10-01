@@ -1,4 +1,11 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import UpArrowSvg from "../../assets/svg/UpArrowIcon";
 import images from "../../constants/images";
 import StatusBarComponent from "../../components/customStatusBar";
@@ -12,12 +19,36 @@ import CheckCircleBlackSvg from "../../assets/svg/CheckCircleBlackIcon";
 import { router, useRouter } from "expo-router";
 import { useAuth } from "../../context/AuthContext";
 import Spinner from "react-native-loading-spinner-overlay";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getProfile } from "../../services/ApiCalls";
 
 const account = () => {
   const router = useRouter();
+  const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const { logout } = useAuth();
+  const { logout, userToken } = useAuth();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profileRes = await getProfile(userToken);
+        if (profileRes?.status === 200) {
+          setUserData(profileRes?.data?.user);
+        }
+      } catch (error) {
+        if (error?.response?.status === 401) {
+          Alert.alert("Something went wrong", "please login", [
+            {
+              text: "Ok",
+              onPress: () => router.replace("/sign-in"),
+            },
+          ]);
+        }
+        console.log(error.response.data.error);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const logoutUser = async () => {
     setIsLoading(true);
@@ -30,6 +61,7 @@ const account = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <Spinner visible={isLoading} />
@@ -47,7 +79,7 @@ const account = () => {
                 className="h-[70px] w-[70px] rounded-full"
               />
               <Text className="font-sfregular text-[#707070] text-[15px]">
-                Lonka Pardhu
+                {userData.username}
               </Text>
             </View>
             <TouchableOpacity className="flex items-center flex-row gap-x-1 my-8">

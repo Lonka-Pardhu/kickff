@@ -103,7 +103,12 @@ const account = () => {
               </View>
               <Entypo name="chevron-small-right" size={30} color="#1493FF" />
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center justify-between py-2">
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/account/sportsOrder");
+              }}
+              className="flex flex-row items-center justify-between py-2"
+            >
               <View className="flex flex-row items-center gap-x-2">
                 <BurgerSvg />
                 <Text className="font-sfregular font-medium text-[17px] text-[#979797]">

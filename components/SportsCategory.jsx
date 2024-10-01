@@ -12,6 +12,55 @@ import SoccerSvg from "../assets/svg/SoccerIcon";
 
 const SportsCategory = () => {
   const [activeSport, setActiveSport] = useState("Soccer");
+  const sports = [
+    {
+      name: "Soccer",
+      label: "Football",
+      Icon: SoccerSvg,
+      notification: true,
+    },
+    {
+      name: "BasketBall",
+      label: "Basketball",
+      Icon: BasketBallSvg,
+    },
+    {
+      name: "AmericanFootball",
+      label: "American Football",
+      Icon: AmericanFootballSvg,
+    },
+    {
+      name: "Cricket",
+      label: "Cricket",
+      Icon: CricketSvg,
+      notification: true,
+    },
+    {
+      name: "Tennis",
+      label: "Tennis",
+      Icon: TennisBallSvg,
+    },
+    {
+      name: "Baseball",
+      label: "Base Ball",
+      Icon: BaseBallSvg,
+    },
+    {
+      name: "Hockey",
+      label: "Hockey",
+      Icon: HockeySvg,
+    },
+    {
+      name: "DartBoard",
+      label: "Dart Board",
+      Icon: DartBoardSvg,
+    },
+    {
+      name: "VolleyBall",
+      label: "Volleyball",
+      Icon: VolleyBallSvg,
+    },
+  ];
   return (
     <View className="pl-4 py-1">
       <ScrollView
@@ -23,128 +72,25 @@ const SportsCategory = () => {
         }}
         horizontal
       >
-        <TouchableOpacity
-          onPress={() => setActiveSport("Soccer")}
-          className="flex flex-col items-center justify-center"
-        >
-          <View className="bg-[#E4E4E7] p-2 rounded-xl relative">
-            <SoccerSvg
-              fill={activeSport === "Soccer" ? "#1493FF" : "#979797"}
-            />
-            <View className="h-3 w-3 rounded-full bg-red-600 border-2 border-white absolute right-0 top-0"></View>
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Football
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => setActiveSport("BasketBall")}
-          className="flex flex-col items-center justify-center"
-        >
-          <View className="bg-[#E4E4E7] p-2 rounded-xl ">
-            <BasketBallSvg
-              fill={activeSport === "BasketBall" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Basketball
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => setActiveSport("AmericanFootball")}
-          className="flex flex-col items-centerstart w-[55px] justify-center"
-        >
-          <View className="bg-[#E4E4E7] w-full p-2 rounded-xl ">
-            <AmericanFootballSvg
-              fill={activeSport === "AmericanFootball" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            American Football
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => setActiveSport("Cricket")}
-          className="flex flex-col items-centerstart w-[55px] justify-center"
-        >
-          <View className="bg-[#E4E4E7] w-full p-2 rounded-xl relative">
-            <CricketSvg
-              fill={activeSport === "Cricket" ? "#1493FF" : "#979797"}
-            />
-            <View className="h-3 w-3 rounded-full bg-red-600 border-2 border-white absolute right-0 top-0"></View>
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Cricket
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setActiveSport("Tennis")}
-          className="flex flex-col items-centerstart w-[55px] justify-center"
-        >
-          <View className="bg-[#E4E4E7] w-full p-2 rounded-xl ">
-            <TennisBallSvg
-              fill={activeSport === "Tennis" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Tennis
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setActiveSport("Baseball")}
-          className="flex flex-col items-center justify-center"
-        >
-          <View className="bg-[#E4E4E7] p-2 rounded-xl ">
-            <BaseBallSvg
-              fill={activeSport === "Baseball" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Base Ball
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setActiveSport("Hockey")}
-          className="flex flex-col items-center justify-center"
-        >
-          <View className="bg-[#E4E4E7] p-2 rounded-xl ">
-            <HockeySvg
-              fill={activeSport === "Hockey" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Hockey
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setActiveSport("DartBoard")}
-          className="flex flex-col items-center justify-center"
-        >
-          <View className="bg-[#E4E4E7] p-2 rounded-xl ">
-            <DartBoardSvg
-              fill={activeSport === "DartBoard" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Dart board
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setActiveSport("VolleyBall")}
-          className="flex flex-col items-center justify-center"
-        >
-          <View className="bg-[#E4E4E7] p-2 rounded-xl ">
-            <VolleyBallSvg
-              fill={activeSport === "VolleyBall" ? "#1493FF" : "#979797"}
-            />
-          </View>
-          <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
-            Volleyball
-          </Text>
-        </TouchableOpacity>
+        {sports.map((sport, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => setActiveSport(sport.name)}
+            className="flex flex-col items-center justify-center"
+          >
+            <View className="bg-[#E4E4E7] p-2 rounded-xl relative">
+              <sport.Icon
+                fill={activeSport === sport.name ? "#1493FF" : "#979797"}
+              />
+              {sport.notification && (
+                <View className="h-3 w-3 rounded-full bg-red-600 border-2 border-white absolute right-0 top-0"></View>
+              )}
+            </View>
+            <Text className="font-sfregular text-[10px] text-[#102856] tracking-wide text-center">
+              {sport.label}
+            </Text>
+          </TouchableOpacity>
+        ))}
 
         {/* <View className="mt-2">
             <Image

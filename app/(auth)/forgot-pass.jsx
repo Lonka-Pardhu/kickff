@@ -118,7 +118,7 @@ const ForgotPass = () => {
                 className="bg-[#0A80FB] w-full items-center p-1 rounded-sm mt-4"
               >
                 <Text className="font-sfsemibold text-white text-[15px]">
-                  Reset
+                  Reset{" "}
                   <Text className="font-pcuregular font-medium">password</Text>
                 </Text>
               </TouchableOpacity>

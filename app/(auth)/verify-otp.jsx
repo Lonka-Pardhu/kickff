@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   Alert,
+  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import StatusBarComponent from "../../components/customStatusBar";
@@ -19,6 +20,7 @@ import verifyEmailOtp from "../../validations/VerifyEmailOtp";
 import { useAuth } from "../../context/AuthContext";
 import { sendEmailVerificationOtp, verifyEmail } from "../../services/ApiCalls";
 import Spinner from "react-native-loading-spinner-overlay";
+import GreenVerifiedSvg from "../../assets/svg/VerifiedIcon";
 
 const VerifyOtp = () => {
   const params = useLocalSearchParams();
@@ -31,7 +33,7 @@ const VerifyOtp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [resentOtpMsg, setResentOtpMsg] = useState(false);
   const [fromForgotPass, setFromForgotPass] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     if (params && params.email) {
       setEmail(params.email);
@@ -65,7 +67,6 @@ const VerifyOtp = () => {
   };
 
   const onSubmit = async (values) => {
-    console.log(values);
     try {
       setIsLoading(true);
       const formData = new FormData();
@@ -74,21 +75,16 @@ const VerifyOtp = () => {
       const verifyOtpRes = await verifyEmail(formData);
       if (verifyOtpRes.status === 200) {
         await setTokenInAsync(verifyOtpRes.data.token);
-        Alert.alert("Email verified Successfully", "", [
-          {
-            text: "Ok",
-            onPress: () => {
-              if (fromForgotPass) {
-                router.replace({
-                  pathname: "/new-pass",
-                  params: { token: verifyOtpRes.data.token }, // Add the token as a query param
-                });
-              } else {
-                router.replace("/trends");
-              }
-            },
-          },
-        ]);
+
+        if (fromForgotPass) {
+          router.push({
+            pathname: "/new-pass",
+            params: { token: verifyOtpRes.data.token },
+          });
+        } else {
+          //check <Modal> below for what happens when user enter this screen coming from forgot password
+          setModalVisible(true);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -201,6 +197,42 @@ const VerifyOtp = () => {
                   Continue
                 </Text>
               </TouchableOpacity>
+            </View>
+            {/* Modal */}
+            <View>
+              <Modal
+                visible={modalVisible}
+                animationType={"fade"}
+                transparent={true}
+              >
+                <View
+                  className="w-full flex-1 flex items-center justify-center"
+                  style={{
+                    backgroundColor: "rgba(52, 52, 52, 0.8)",
+                  }}
+                >
+                  <View className="w-[90%] h-auto bg-white rounded-lg p-2 flex flex-col gap-y-1 items-center justify-center">
+                    <GreenVerifiedSvg />
+                    <Text className="text-center font-sfsemibold ">
+                      Verified
+                    </Text>
+                    <Text className="text-center font-sfsemibold text-[##979797] ">
+                      Yahoo! Your account has been successfully verified now.
+                    </Text>
+                    <TouchableOpacity
+                      className="bg-[#0A80FB] p-2 w-[60%] rounded-md"
+                      onPress={() => {
+                        setModalVisible(false);
+                        router.replace("/trends");
+                      }}
+                    >
+                      <Text className="text-white font-sfsemibold text-center">
+                        OK
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
             </View>
           </KeyboardAwareScrollView>
         </ScrollView>

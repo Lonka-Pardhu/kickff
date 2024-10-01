@@ -20,7 +20,7 @@ const index = () => {
       if (isAuthenticated) {
         router.replace("/trends");
       } else {
-        router.replace("/new-pass");
+        router.replace("/(auth)");
       }
       setLoading(false);
     };

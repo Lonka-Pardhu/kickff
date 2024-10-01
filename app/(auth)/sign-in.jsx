@@ -40,10 +40,12 @@ const SignIn = () => {
       const loginRes = await loginUser(formData);
       if (loginRes.status === 200) {
         await setTokenInAsync(loginRes.data.token);
+        router.replace("/trends");
         resetForm();
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response.status);
+      console.error(error);
       setApiErr(error.response.data.error);
     } finally {
       setIsLoading(false);

@@ -6,21 +6,21 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import UpArrowSvg from "../../assets/svg/UpArrowIcon";
-import images from "../../constants/images";
-import StatusBarComponent from "../../components/customStatusBar";
+import UpArrowSvg from "../../../assets/svg/UpArrowIcon";
+import images from "../../../constants/images";
+import StatusBarComponent from "../../../components/customStatusBar";
 import Entypo from "@expo/vector-icons/Entypo";
-import UserEditSvg from "../../assets/svg/UserEditIcon";
-import BurgerSvg from "../../assets/svg/BurgerIcon";
-import HeadsetSvg from "../../assets/svg/HeadsetIcon";
-import CheckCircleSvg from "../../assets/svg/CheckCircleIcon";
-import FingerprintSvg from "../../assets/svg/FingerprintIcon";
-import CheckCircleBlackSvg from "../../assets/svg/CheckCircleBlackIcon";
-import { router, useRouter } from "expo-router";
-import { useAuth } from "../../context/AuthContext";
+import UserEditSvg from "../../../assets/svg/UserEditIcon";
+import BurgerSvg from "../../../assets/svg/BurgerIcon";
+import HeadsetSvg from "../../../assets/svg/HeadsetIcon";
+import CheckCircleSvg from "../../../assets/svg/CheckCircleIcon";
+import FingerprintSvg from "../../../assets/svg/FingerprintIcon";
+import CheckCircleBlackSvg from "../../../assets/svg/CheckCircleBlackIcon";
+import { useRouter } from "expo-router";
+import { useAuth } from "../../../context/AuthContext";
 import Spinner from "react-native-loading-spinner-overlay";
 import { useEffect, useState } from "react";
-import { getProfile } from "../../services/ApiCalls";
+import { getProfile } from "../../../services/ApiCalls";
 
 const account = () => {
   const router = useRouter();

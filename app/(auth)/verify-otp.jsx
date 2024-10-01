@@ -83,6 +83,7 @@ const VerifyOtp = () => {
           });
         } else {
           //check <Modal> below for what happens when user enter this screen coming from forgot password
+          resetForm();
           setModalVisible(true);
         }
       }
@@ -96,14 +97,21 @@ const VerifyOtp = () => {
     }
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        otp: "",
-      },
-      validationSchema: verifyEmailOtp,
-      onSubmit,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    resetForm,
+  } = useFormik({
+    initialValues: {
+      otp: "",
+    },
+    validationSchema: verifyEmailOtp,
+    onSubmit,
+  });
 
   return (
     <>
@@ -216,7 +224,7 @@ const VerifyOtp = () => {
                     <Text className="text-center font-sfsemibold ">
                       Verified
                     </Text>
-                    <Text className="text-center font-sfsemibold text-[##979797] ">
+                    <Text className="text-center font-sfsemibold text-[#979797] ">
                       Yahoo! Your account has been successfully verified now.
                     </Text>
                     <TouchableOpacity

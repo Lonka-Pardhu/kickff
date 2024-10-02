@@ -58,3 +58,12 @@ export const setNewPass = async (values, token) => {
     },
   });
 };
+
+export const updateProfile = async (values, token) => {
+  return await axios.post(`${API_URL}/update-profile`, values, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

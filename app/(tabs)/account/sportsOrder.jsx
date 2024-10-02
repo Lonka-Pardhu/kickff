@@ -33,7 +33,6 @@ const sports = [
     name: "Soccer",
     label: "Football",
     Icon: SoccerSvg,
-    notification: true,
   },
   {
     name: "BasketBall",
@@ -49,7 +48,6 @@ const sports = [
     name: "Cricket",
     label: "Cricket",
     Icon: CricketSvg,
-    notification: true,
   },
   {
     name: "Tennis",
@@ -117,7 +115,7 @@ const Livescore = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBarComponent barStyle="dark-content" barBackgroundColor="white">
-        <View>
+        <View className="w-full flex flex-row items-center justify-between border-b-[0.5px] border-[#0000004D]">
           <TouchableOpacity
             onPress={() => router.back()}
             className="flex flex-row items-center p-2"
@@ -125,12 +123,22 @@ const Livescore = () => {
             <Feather name="chevron-left" size={24} color="black" />
             <Text className="font-sfsemibold text-[15px]">Back</Text>
           </TouchableOpacity>
+          <View className="absolute left-0 right-0 flex items-center">
+            <Text className="font-sfsemibold text-[17px]">Sports order</Text>
+          </View>
+        </View>
+        <View>
+          <Text className="font-sfregular text-[17px] px-24 py-2 text-center">
+            Change sports preference in the menu.
+          </Text>
         </View>
         <View className="w-full px-4 flex-1 flex justify-center items-center">
           <DraggableFlatList
+            showsVerticalScrollIndicator={false}
             // className="flex-1 justify-center items-center"
             data={data}
             onDragEnd={({ data }) => {
+              console.log(data);
               setData(data); // Update the order of sports
             }}
             keyExtractor={(item) => item.name}

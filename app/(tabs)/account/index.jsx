@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -6,20 +7,19 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import Entypo from "@expo/vector-icons/Entypo";
+import { useRouter } from "expo-router";
 import UpArrowSvg from "../../../assets/svg/UpArrowIcon";
+import Spinner from "react-native-loading-spinner-overlay";
 import images from "../../../constants/images";
 import StatusBarComponent from "../../../components/customStatusBar";
-import Entypo from "@expo/vector-icons/Entypo";
 import UserEditSvg from "../../../assets/svg/UserEditIcon";
 import BurgerSvg from "../../../assets/svg/BurgerIcon";
 import HeadsetSvg from "../../../assets/svg/HeadsetIcon";
 import CheckCircleSvg from "../../../assets/svg/CheckCircleIcon";
 import FingerprintSvg from "../../../assets/svg/FingerprintIcon";
 import CheckCircleBlackSvg from "../../../assets/svg/CheckCircleBlackIcon";
-import { useRouter } from "expo-router";
 import { useAuth } from "../../../context/AuthContext";
-import Spinner from "react-native-loading-spinner-overlay";
-import { useEffect, useState } from "react";
 import { getProfile } from "../../../services/ApiCalls";
 
 const account = () => {
@@ -29,6 +29,7 @@ const account = () => {
   const { logout, userToken } = useAuth();
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchProfile = async () => {
       try {
         const profileRes = await getProfile(userToken);
@@ -37,7 +38,7 @@ const account = () => {
         }
       } catch (error) {
         if (error?.response?.status === 401) {
-          Alert.alert("Something went wrong", "please login", [
+          Alert.alert("Something went wrong!🧐", "Please login.", [
             {
               text: "Ok",
               onPress: () => router.replace("/sign-in"),
@@ -45,6 +46,8 @@ const account = () => {
           ]);
         }
         console.log(error.response.data.error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProfile();
@@ -94,7 +97,12 @@ const account = () => {
               <Entypo name="chevron-small-right" size={30} color="#1493FF" />
             </TouchableOpacity>
 
-            <TouchableOpacity className="flex flex-row items-center justify-between py-2">
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/account/personalInfo");
+              }}
+              className="flex flex-row items-center justify-between py-2"
+            >
               <View className="flex flex-row items-center gap-x-2">
                 <UserEditSvg />
                 <Text className="font-sfregular font-medium text-[17px] text-[#979797]">

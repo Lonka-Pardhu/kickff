@@ -1,0 +1,13 @@
+last_name is not provided in profile api (want it for edit profile screen)
+
+getpredictions(single bet)
+color code of the league is not prvided
+league image is not provided
+teams svg icons is not provided
+//want the above things for app user
+
+get-sport-predictions api not working //RECHECK
+want predictions according to (all, upcoming, completed) 
+
+
+//need edit category option and add svg in admin panel so that bavana can add the correct sport icons, which will help me integrate sports order api

@@ -11,3 +11,7 @@ want predictions according to (all, upcoming, completed)
 
 
 //need edit category option and add svg in admin panel so that bavana can add the correct sport icons, which will help me integrate sports order api
+
+//need proper api data and format for the predictions, betbuilder, and paralays 
+//cant use admin panel apis for app, a lot of details are missing which needed to be shown in the app.
+

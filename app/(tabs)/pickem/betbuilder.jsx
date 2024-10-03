@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  Platform,
 } from "react-native";
 import React from "react";
 import StatusBarComponent from "../../../components/customStatusBar";
@@ -78,8 +79,16 @@ const betbuilder = () => {
                   </View>
                   <RatingComponent rating={4} />
                 </View>
-                <View className="bg-[#D4D4D4] w-[2px] h-[50px] -mt-[14px] ml-1"></View>
-                <View className="flex flex-row items-center justify-between -mt-[14px]">
+                <View
+                  className={`bg-[#D4D4D4] w-[2px] h-[50px] ${
+                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
+                  } ml-1`}
+                ></View>
+                <View
+                  className={`flex flex-row items-center justify-between ${
+                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
+                  }`}
+                >
                   <View className="flex flex-row items-center">
                     <CheckCircleSvg />
                     <View className="ml-2">
@@ -96,8 +105,16 @@ const betbuilder = () => {
                   </View>
                   <RatingComponent rating={3} />
                 </View>
-                <View className="bg-[#D4D4D4] w-[2px] h-[50px] -mt-[14px] ml-1"></View>
-                <View className="flex flex-row items-center justify-between -mt-[14px]">
+                <View
+                  className={`bg-[#D4D4D4] w-[2px] h-[50px] ${
+                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
+                  } ml-1`}
+                ></View>
+                <View
+                  className={`flex flex-row items-center justify-between ${
+                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
+                  }`}
+                >
                   <View className="flex flex-row items-center">
                     <CheckCircleSvg />
                     <View className="ml-2">

@@ -4,12 +4,10 @@ import React, { useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { AuthProvider } from "../context/AuthContext";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
-  const queryClient = new QueryClient();
   const [fontsLoaded, error] = useFonts({
     "SF-Pro-Display-Bold": require("../assets/fonts/SF-Pro-Display-Bold.otf"),
     "SF-Pro-Display-Regular": require("../assets/fonts/SF-Pro-Display-Regular.otf"),
@@ -26,13 +24,11 @@ const RootLayout = () => {
 
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <Stack options={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-        </Stack>
-      </QueryClientProvider>
+      <Stack options={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
     </AuthProvider>
   );
 };

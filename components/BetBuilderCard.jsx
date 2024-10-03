@@ -22,9 +22,9 @@ const BetBuilderCard = () => {
         })
       }
       style={styles.cardShadow}
-      className="w-full rounded-lg bg-white py-4 px-4 shadow-md mb-2"
+      className="w-full flex flex-col gap-y-3 rounded-lg bg-white py-4 px-4 shadow-md mb-2"
     >
-      <View className="flex flex-row items-center justify-between">
+      <View className="flex flex-row items-center justify-between ">
         <View className="flex flex-row items-center">
           <View className="flex flex-row items-center gap-x-1">
             <BetbuilderSvg />

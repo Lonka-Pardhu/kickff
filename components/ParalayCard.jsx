@@ -16,7 +16,7 @@ const ParalayCard = () => {
     <TouchableOpacity
       onPress={() =>
         router.push({
-          pathname: `/pickem/betbuilder`,
+          pathname: `/pickem/paralay`,
           params: { id: 1 },
         })
       }

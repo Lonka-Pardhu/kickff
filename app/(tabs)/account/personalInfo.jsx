@@ -3,6 +3,7 @@ import StatusBarComponent from "../../../components/customStatusBar";
 import Spinner from "react-native-loading-spinner-overlay";
 import {
   Image,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -106,7 +107,7 @@ const personalInfo = () => {
               <Feather name="chevron-left" size={24} color="black" />
               <Text className="font-sfsemibold text-[15px]">Back</Text>
             </TouchableOpacity>
-            <View className="absolute left-0 right-0 flex items-center">
+            <View>
               <Text className="font-sfsemibold text-[17px]">
                 Personal Information
               </Text>
@@ -135,7 +136,9 @@ const personalInfo = () => {
                       }}
                       onBlur={handleBlur("firstName")}
                       value={values.firstName}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } font-sfregular px-2 py-2 rounded-sm w-full`}
                       placeholder="First Name"
                     />
                     {errors.firstName && touched.firstName && (
@@ -155,8 +158,9 @@ const personalInfo = () => {
                       }}
                       onBlur={handleBlur("lastName")}
                       value={values.lastName}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
-                      placeholder="Last Name"
+className={`bg-[#f2f2f2] ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } font-sfregular px-2 py-2 rounded-sm w-full`}                      placeholder="Last Name"
                     />
                     {errors.lastName && touched.lastName && (
                       <Text className="self-start text-red-500 text-sm font-sfregular ">
@@ -176,7 +180,9 @@ const personalInfo = () => {
                       }}
                       onBlur={handleBlur("username")}
                       value={values.username}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } font-sfregular px-2 py-2 rounded-sm w-full`}
                       placeholder="Username"
                     />
                     {errors.username && touched.username && (
@@ -195,7 +201,9 @@ const personalInfo = () => {
                       onBlur={handleBlur("email")}
                       value={values.email}
                       keyboardType="email"
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } font-sfregular px-2 py-2 rounded-sm w-full`}
                       placeholder="Email"
                     />
                     {errors.email && touched.email && (

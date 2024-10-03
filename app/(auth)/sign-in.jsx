@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useFormik } from "formik";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -45,7 +46,6 @@ const SignIn = () => {
       }
     } catch (error) {
       console.log(error.response.status);
-      console.error(error);
       setApiErr(error.response.data.error);
     } finally {
       setIsLoading(false);
@@ -101,7 +101,9 @@ const SignIn = () => {
                       }}
                       onBlur={handleBlur("username")}
                       value={values.username}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] font-sfregular ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } px-2 py-2 rounded-sm w-full`}
                       placeholder="Username"
                     />
                     {errors.username && touched.username && (
@@ -120,7 +122,9 @@ const SignIn = () => {
                         }}
                         onBlur={handleBlur("password")}
                         value={values.password}
-                        className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-l-sm flex-1"
+                        className={`bg-[#f2f2f2] font-sfregular ${
+                          Platform.OS === "ios" ? "h-11" : ""
+                        } px-2 py-2 rounded-sm flex-1`}
                         placeholder="Password"
                       />
                       <Text

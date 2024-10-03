@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import StatusBarComponent from "../../components/customStatusBar";
@@ -109,7 +110,9 @@ const SignUp = () => {
                       }}
                       onBlur={handleBlur("firstName")}
                       value={values.firstName}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] font-sfregular ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } px-2 py-2 rounded-sm w-full`}
                       placeholder="First Name"
                     />
                     {errors.firstName && touched.firstName && (
@@ -128,7 +131,9 @@ const SignUp = () => {
                       }}
                       onBlur={handleBlur("lastName")}
                       value={values.lastName}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] font-sfregular ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } px-2 py-2 rounded-sm w-full`}
                       placeholder="Last Name"
                     />
                     {errors.lastName && touched.lastName && (
@@ -147,7 +152,9 @@ const SignUp = () => {
                       }}
                       onBlur={handleBlur("username")}
                       value={values.username}
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] font-sfregular ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } px-2 py-2 rounded-sm w-full`}
                       placeholder="Username"
                     />
                     {errors.username && touched.username && (
@@ -165,7 +172,9 @@ const SignUp = () => {
                       onBlur={handleBlur("email")}
                       value={values.email}
                       keyboardType="email"
-                      className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-sm w-full"
+                      className={`bg-[#f2f2f2] font-sfregular ${
+                        Platform.OS === "ios" ? "h-11" : ""
+                      } px-2 py-2 rounded-sm w-full`}
                       placeholder="Email"
                     />
                     {errors.email && touched.email && (
@@ -184,7 +193,9 @@ const SignUp = () => {
                         }}
                         onBlur={handleBlur("password")}
                         value={values.password}
-                        className="bg-[#f2f2f2] font-sfregular px-2 py-2 rounded-l-sm flex-1"
+                        className={`bg-[#f2f2f2] font-sfregular ${
+                          Platform.OS === "ios" ? "h-11" : ""
+                        } px-2 py-2 rounded-sm flex-1`}
                         placeholder="Password"
                       />
                       <Text

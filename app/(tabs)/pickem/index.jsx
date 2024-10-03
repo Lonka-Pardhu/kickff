@@ -33,6 +33,7 @@ import { router } from "expo-router";
 import ColouredCircle from "../../../components/ColouredCircle";
 import StarSvg from "../../../assets/svg/StarIcon";
 import RoundCircleSvg from "../../../assets/svg/RoundCircleIcon";
+import BetBuilderCard from "../../../components/BetBuilderCard";
 
 const pickem = () => {
   const width = Dimensions.get("window").width;
@@ -101,56 +102,7 @@ const pickem = () => {
             </TouchableOpacity>
           </View>
           <View className="px-4 py-2 flex flex-col items-center justify-center gap-y-2">
-            <TouchableOpacity
-              onPress={() =>
-                router.push({
-                  pathname: `/pickem/betbuilder`,
-                  params: { id: 1 },
-                })
-              }
-              style={styles.cardShadow}
-              className="w-full rounded-lg bg-white py-4 px-4 shadow-md"
-            >
-              <View className="flex flex-row items-center justify-between">
-                <View className="flex flex-row items-center">
-                  <View className="flex flex-row items-center gap-x-1">
-                    <BetbuilderSvg />
-                    <Text className="font-sfregular text-[8px] text-[#b7b7b7] tracking-widest">
-                      12 MAR 4:30 AM
-                    </Text>
-                  </View>
-                </View>
-                <RatingComponent rating={5} />
-              </View>
-              <View className="flex flex-row items-center pr-6 py-3 justify-between">
-                <View className="flex flex-row items-center gap-x-3">
-                  <View className="flex flex-row gap-x-1">
-                    <BarcelonaSvg />
-                    <MadridSvg />
-                  </View>
-                  <View className="flex flex-col">
-                    <Text className="font-sfsemibold">Barcelona</Text>
-                    <Text className="font-sfsemibold">Real Madrid</Text>
-                  </View>
-                </View>
-                <View className="flex flex-row items-center justify-center gap-x-1 ">
-                  <CheckCircleSvg />
-                  <Text className="font-sfregular font-medium text-[#FFAB2E]">
-                    2.54
-                  </Text>
-                </View>
-              </View>
-              <View className="px-4 w-full flex flex-row items-center justify-between">
-                <View className="flex flex-row items-center gap-x-[6px] ml-2">
-                  <RoundCircleSvg />
-                  <StarSvg />
-                  <RoundCircleSvg />
-                  <RoundCircleSvg />
-                  <StarSvg />
-                </View>
-                <ArrowRightSvg />
-              </View>
-            </TouchableOpacity>
+            <BetBuilderCard />
             <TouchableOpacity
               onPress={() =>
                 router.push({

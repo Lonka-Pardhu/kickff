@@ -16,6 +16,7 @@ import RatingComponent from "../../../components/RatingComponent";
 import StarSvg from "../../../assets/svg/StarIcon";
 import CornerDesignSvg from "../../../assets/svg/CornerDesignIcon";
 import ParalaySvg from "../../../assets/svg/ParalayIcon";
+import VoidSvg from "../../../assets/svg/VoidIcon";
 
 const paralay = () => {
   const router = useRouter();
@@ -35,12 +36,12 @@ const paralay = () => {
             style={styles.cardShadow}
           >
             <View className="w-full h-auto mb-6 px-4 py-4">
-              <View className="w-full flex flex-row items-center justify-between">
+              <View className="w-full flex flex-row items-center justify-between mb-4">
                 <ParalaySvg />
                 <RatingComponent rating={3} />
               </View>
 
-              <View className="flex flex-row items-start justify-between w-full pr-4 py-3 mt-4">
+              <View className="flex flex-row items-start justify-between w-full pr-4 py-3">
                 <View className="flex flex-row gap-x-4">
                   <View className="flex flex-col items-center ">
                     <Text className="font-sfsemibold text-[8px] tracking-widest font-medium leading-[10px] mb-1">
@@ -58,6 +59,43 @@ const paralay = () => {
                     <View className="flex flex-col gap-y-[6px]">
                       <View className="flex flex-row items-center gap-x-1">
                         <Text className="text-[#0158C5] font-sfsemibold text-[12px] leading-[12px]">
+                          Yes
+                        </Text>
+                        <StarSvg />
+                      </View>
+                      <Text className="text-[#b6b6b6] font-sfregular text-[11px] leading-[12px]">
+                        Both Teams to Score
+                      </Text>
+                      <Text className="text-[#b6b6b6] font-sfregular text-[11px]  leading-[12px]">
+                        Barcelona vs Real Madrid
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View>
+                  <Text className="font-sfsemibold text-[15px] leading-[15px]">
+                    1.56
+                  </Text>
+                </View>
+              </View>
+              <View className="flex flex-row items-start justify-between w-full pr-4 py-3">
+                <View className="flex flex-row gap-x-4">
+                  <View className="flex flex-col items-center ">
+                    <Text className="font-sfsemibold text-[8px] tracking-widest font-medium leading-[10px] mb-1">
+                      4:30AM
+                    </Text>
+                    <View className="flex flex-row gap-x-1">
+                      <BarcelonaSvg />
+                      <MadridSvg />
+                    </View>
+                  </View>
+                  <View className="flex flex-row gap-x-1">
+                    <View>
+                      <VoidSvg />
+                    </View>
+                    <View className="flex flex-col gap-y-[6px]">
+                      <View className="flex flex-row items-center gap-x-1">
+                        <Text className="text-[#707070] line-through font-sfsemibold text-[12px] leading-[12px]">
                           Yes
                         </Text>
                         <StarSvg />

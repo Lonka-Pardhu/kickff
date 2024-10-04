@@ -39,14 +39,22 @@ const SignIn = () => {
       formData.append("username", values.username);
       formData.append("password", values.password);
       const loginRes = await loginUser(formData);
-      if (loginRes.status === 200) {
+
+      if (loginRes && loginRes.status === 200) {
         await setTokenInAsync(loginRes.data.token);
         router.replace("/trends");
         resetForm();
       }
     } catch (error) {
-      console.log(error.response.status);
-      setApiErr(error.response.data.error);
+      if (error.response) {
+        // Handle the error response (server-side errors)
+        console.log("Error Status:", error.response.status);
+        setApiErr(error.response.data.error);
+      } else {
+        // Handle client-side or network errors
+        console.log("Network or unexpected error:", error.message);
+        setApiErr("An unexpected error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }

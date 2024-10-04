@@ -35,9 +35,9 @@ const index = () => {
       // Ensure we check the actual stored token, not just isAuthenticated
       const storedToken = await AsyncStorage.getItem("userToken");
       if (storedToken) {
-        router.push("/trends");
+        router.replace("/trends");
       } else {
-        router.push("/(auth)");
+        router.replace("/(auth)");
       }
       setLoading(false);
     };

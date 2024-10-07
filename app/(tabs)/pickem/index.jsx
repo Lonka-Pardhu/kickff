@@ -37,7 +37,8 @@ const pickem = () => {
     const fetchPickems = async () => {
       try {
         const formData = new FormData();
-        formData.append("category_id", 5);
+        formData.append("category_id", 4);
+
         formData.append("status", activeCategory);
         const pickemsRes = await getSportPickems(formData, userToken);
         if (pickemsRes && pickemsRes?.status === 200) {
@@ -162,4 +163,3 @@ const styles = StyleSheet.create({
 export default pickem;
 
 //! use svgxml form react native svg while getting data from api
-//* make the rating dots component into custom

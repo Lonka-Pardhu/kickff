@@ -24,6 +24,7 @@ import FormatDate from "../../../helpers/FormatDate";
 import WrongSvg from "../../../assets/svg/WrongIcon";
 import VoidSvg from "../../../assets/svg/VoidIcon";
 import RoundCircleSvg from "../../../assets/svg/RoundCircleIcon";
+import ClockSvg from "../../../assets/svg/ClockIcon";
 
 const betbuilder = () => {
   const router = useRouter();
@@ -156,15 +157,18 @@ const betbuilder = () => {
                             <VoidSvg />
                           ) : null}
                           <View className="ml-2">
-                            <Text
-                              className={`font-sfsemibold ${
-                                item.status === "Void"
-                                  ? "text-[#8A8A8E] line-through"
-                                  : "text-[#0158C5]"
-                              } `}
-                            >
-                              {item.title}
-                            </Text>
+                            <View className="flex flex-row items-center gap-x-1">
+                              <Text
+                                className={`font-sfsemibold ${
+                                  item.status === "Void"
+                                    ? "text-[#8A8A8E] line-through"
+                                    : "text-[#0158C5]"
+                                } `}
+                              >
+                                {item.title}
+                              </Text>
+                              {item.is_star === "1" ? <StarSvg /> : null}
+                            </View>
                             <Text className="font-sfsemibold text-[#b7b7b7] text-[8px]">
                               {item.option.name}
                             </Text>

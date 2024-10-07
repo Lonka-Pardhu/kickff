@@ -75,7 +75,7 @@ const BetBuilderCard = ({ data }) => {
               // If all conditions have status "Yes", show CheckCircleSvg
               <CheckCircleBigSvg />
             ) : (
-              // If neither all "Yes" nor any "No", show default CheckCircleSvg
+              // If neither all "Yes" nor any "No", show default ClockSvg
               <ClockSvg />
             )
           ) : null}

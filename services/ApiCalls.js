@@ -85,3 +85,11 @@ export const getSportPickems = async (values, token) => {
     },
   });
 };
+
+export const getSports = async (token) => {
+  return await axios.get(`${API_URL}/get-sports`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

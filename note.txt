@@ -15,3 +15,15 @@ want predictions according to (all, upcoming, completed)
 //need proper api data and format for the predictions, betbuilder, and paralays 
 //cant use admin panel apis for app, a lot of details are missing which needed to be shown in the app.
 
+
+
+//My side 
+
+//prediction card
+add coin if its not free and check design
+see completed key spelling C or c ? 
+and show timer icon for both upcoming and running and checkmark or only completed
+
+//add coins on the top right of the picks header
+//coins part design in profile
+//play console payment process (RnD)?

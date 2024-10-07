@@ -8,9 +8,10 @@ import { useRouter } from "expo-router";
 import CheckCircleSvg from "../assets/svg/CheckCircleIcon";
 import RoundCircleSvg from "../assets/svg/RoundCircleIcon";
 import StarSvg from "../assets/svg/StarIcon";
+
 import ArrowRightSvg from "../assets/svg/ArrowRightIcon";
 
-const ParalayCard = () => {
+const ParalayCard = ({ data }) => {
   const router = useRouter();
   return (
     <TouchableOpacity

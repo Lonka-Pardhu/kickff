@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import BetbuilderSvg from "../assets/svg/BetBuilderIcon";
@@ -8,11 +8,18 @@ import MadridSvg from "../assets/svg/MadridIcon";
 import { useRouter } from "expo-router";
 import CheckCircleSvg from "../assets/svg/CheckCircleIcon";
 import RoundCircleSvg from "../assets/svg/RoundCircleIcon";
+
 import StarSvg from "../assets/svg/StarIcon";
 import ArrowRightSvg from "../assets/svg/ArrowRightIcon";
+import FormatDate from "../helpers/FormatDate";
+import ClockSvg from "../assets/svg/ClockIcon";
+import VoidSvg from "../assets/svg/VoidIcon";
+import WrongSvg from "../assets/svg/WrongIcon";
 
-const BetBuilderCard = () => {
+const BetBuilderCard = ({ data }) => {
   const router = useRouter();
+
+  console.log("DATA", data);
   return (
     <TouchableOpacity
       onPress={() =>
@@ -22,44 +29,79 @@ const BetBuilderCard = () => {
         })
       }
       style={styles.cardShadow}
-      className="w-full flex flex-col gap-y-3 rounded-lg bg-white py-4 px-4 shadow-md mb-2"
+      className="w-full flex flex-col gap-y-3 rounded-lg bg-white py-4 px-4 mt-1 shadow-md mb-2"
     >
       <View className="flex flex-row items-center justify-between ">
         <View className="flex flex-row items-center">
           <View className="flex flex-row items-center gap-x-1">
             <BetbuilderSvg />
             <Text className="font-sfregular text-[8px] text-[#b7b7b7] tracking-widest">
-              12 MAR 4:30 AM
+              {FormatDate(data.start_at)}
             </Text>
           </View>
         </View>
-        <RatingComponent rating={5} />
+        <RatingComponent rating={data.rating} />
       </View>
       <View className="flex flex-row items-center pr-6 py-3 justify-between">
         <View className="flex flex-row items-center gap-x-3">
           <View className="flex flex-row gap-x-1">
-            <BarcelonaSvg />
-            <MadridSvg />
+            <Image
+              src={data.team1.icon}
+              className="h-[15.52px] w-[14.16px]"
+              resizeMode="contain"
+            />
+            <Image
+              src={data.team2.icon}
+              className="h-[15.52px] w-[14.16px]"
+              resizeMode="contain"
+            />
           </View>
           <View className="flex flex-col">
-            <Text className="font-sfsemibold">Barcelona</Text>
-            <Text className="font-sfsemibold">Real Madrid</Text>
+            <Text className="font-sfsemibold">{data.team1.name}</Text>
+            <Text className="font-sfsemibold">{data.team2.name}</Text>
           </View>
         </View>
         <View className="flex flex-row items-center justify-center gap-x-1 ">
-          <CheckCircleSvg />
-          <Text className="font-sfregular font-medium text-[#FFAB2E]">
-            2.54
+          {data.status === "Upcoming" ? <ClockSvg /> : <CheckCircleSvg />}
+
+          <Text
+            className={`font-sfregular font-medium ${
+              data.status === "Upcoming" ? "text-[#FFAB2E]" : ""
+            } `}
+          >
+            {data.odds}
           </Text>
         </View>
       </View>
       <View className="px-4 w-full flex flex-row items-center justify-between">
         <View className="flex flex-row items-center gap-x-[6px] ml-2">
-          <RoundCircleSvg />
-          <StarSvg />
-          <RoundCircleSvg />
-          <RoundCircleSvg />
-          <StarSvg />
+          {data.conditions &&
+            data.conditions.map((item, index) => {
+              if (data.status === "Upcoming") {
+                // If it's an "Upcoming" event, only show Star or Idle (yellow) icons
+                return item.is_star === "1" ? (
+                  <StarSvg key={index} />
+                ) : (
+                  <RoundCircleSvg key={index} />
+                );
+              } else if (
+                data.status === "Running" ||
+                data.status === "Completed"
+              ) {
+                // For "Running" or "Completed", render icons according to the item status
+                return item.status === "Idle" ? (
+                  <RoundCircleSvg key={index} />
+                ) : item.status === "Yes" ? (
+                  <CheckCircleSvg key={index} />
+                ) : item.status === "No" ? (
+                  <WrongSvg key={index} />
+                ) : item.status === "Void" ? (
+                  <VoidSvg key={index} />
+                ) : null;
+              }
+
+              return null; // Fallback for any other cases
+            })}
         </View>
         <ArrowRightSvg />
       </View>
@@ -77,3 +119,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
 });
+
+//!check the status upcoming or complete and handle odds text color and icon infront of it on that
+//!(also see if there is any other status other than completed and upcoming)

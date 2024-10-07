@@ -34,6 +34,7 @@ const VerifyOtp = () => {
   const [resentOtpMsg, setResentOtpMsg] = useState(false);
   const [fromForgotPass, setFromForgotPass] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     if (params && params.email) {
       setEmail(params.email);

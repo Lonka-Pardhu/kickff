@@ -67,3 +67,21 @@ export const updateProfile = async (values, token) => {
     },
   });
 };
+
+export const changePassProfile = async (values, token) => {
+  return await axios.post(`${API_URL}/change-password`, values, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}; //! RE-check its not working
+
+export const getSportPickems = async (values, token) => {
+  return await axios.post(`${API_URL}/get-sport-pickems`, values, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

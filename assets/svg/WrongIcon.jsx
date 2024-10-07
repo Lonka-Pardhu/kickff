@@ -1,16 +1,27 @@
 import * as React from "react";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Rect } from "react-native-svg";
 const WrongSvg = (props) => (
-  <Svg xmlns="http://www.w3.org/2000/svg" width={10} height={10} {...props}>
-    <Path
-      fill="#f25c54"
-      d="M4.46 0a4.46 4.46 0 1 0 4.46 4.46A4.465 4.465 0 0 0 4.46 0Zm0 0"
-      data-name="Path 37008"
+  <Svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={10}
+    height={10}
+    fill="none"
+    {...props}
+  >
+    <Rect width={10} height={10} fill="#F25C54" rx={5} />
+    <Rect
+      width={5.796}
+      height={1.195}
+      fill="#fff"
+      rx={0.597}
+      transform="matrix(-.7071 -.7071 .7097 -.7045 6.651 7.465)"
     />
-    <Path
-      fill="#fafafa"
-      d="M6.252 5.677a.406.406 0 1 1-.574.574L4.459 5.032 3.24 6.251a.406.406 0 1 1-.574-.574l1.219-1.219-1.219-1.219a.406.406 0 0 1 .574-.574l1.219 1.219 1.219-1.219a.406.406 0 1 1 .574.574L5.033 4.458Zm0 0"
-      data-name="Path 37009"
+    <Rect
+      width={5.796}
+      height={1.195}
+      fill="#fff"
+      rx={0.597}
+      transform="matrix(-.7071 .7071 -.7045 -.7097 7.49 3.376)"
     />
   </Svg>
 );

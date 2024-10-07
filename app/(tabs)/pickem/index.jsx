@@ -29,8 +29,8 @@ const pickem = () => {
   const [pickemsData, setPickemsData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const [activeSport, setActiveSport] = useState("Soccer");
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeSportId, setActiveSportId] = useState("");
+  const [activeCategory, setActiveCategory] = useState("Upcoming");
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,7 +38,7 @@ const pickem = () => {
       try {
         const formData = new FormData();
         formData.append("category_id", 5);
-        formData.append("status", "Completed");
+        formData.append("status", activeCategory);
         const pickemsRes = await getSportPickems(formData, userToken);
         if (pickemsRes && pickemsRes?.status === 200) {
           setPickemsData(pickemsRes.data.pickems);
@@ -58,7 +58,7 @@ const pickem = () => {
       }
     };
     fetchPickems();
-  }, []);
+  }, [activeCategory, activeSportId]);
 
   return (
     <>
@@ -81,23 +81,23 @@ const pickem = () => {
                 Platform.OS === "ios" ? "py-4" : "py-2"
               }`}
             >
-              <TouchableOpacity onPress={() => setActiveCategory("all")}>
+              <TouchableOpacity onPress={() => setActiveCategory("All")}>
                 <Text
                   className={`font-sfregular text-[13px] ${
-                    activeCategory === "all" ? "text-black" : "text-[#979797]"
+                    activeCategory === "All" ? "text-black" : "text-[#979797]"
                   }`}
                 >
                   all
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setActiveCategory("upcoming")}>
+              <TouchableOpacity onPress={() => setActiveCategory("Upcoming")}>
                 <View className="flex flex-row items-center">
                   <UpComingSvg
-                    fill={activeCategory === "upcoming" ? "#1493FF" : "#979797"}
+                    fill={activeCategory === "Upcoming" ? "#1493FF" : "#979797"}
                   />
                   <Text
                     className={`font-sfregular text-[13px] ${
-                      activeCategory === "upcoming"
+                      activeCategory === "Upcoming"
                         ? "text-black"
                         : "text-[#979797]"
                     }`}
@@ -106,16 +106,16 @@ const pickem = () => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => setActiveCategory("completed")}>
+              <TouchableOpacity onPress={() => setActiveCategory("Completed")}>
                 <View className="flex flex-row items-center">
                   <CompletedSvg
                     fill={
-                      activeCategory === "completed" ? "#1493FF" : "#979797"
+                      activeCategory === "Completed" ? "#1493FF" : "#979797"
                     }
                   />
                   <Text
                     className={`font-sfregular text-[13px] ${
-                      activeCategory === "completed"
+                      activeCategory === "Completed"
                         ? "text-black"
                         : "text-[#979797]"
                     }`}

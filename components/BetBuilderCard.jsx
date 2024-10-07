@@ -15,6 +15,7 @@ import FormatDate from "../helpers/FormatDate";
 import ClockSvg from "../assets/svg/ClockIcon";
 import VoidSvg from "../assets/svg/VoidIcon";
 import WrongSvg from "../assets/svg/WrongIcon";
+import WrongBigSvg from "../assets/svg/WrongIconBig";
 
 const BetBuilderCard = ({ data }) => {
   const router = useRouter();
@@ -62,12 +63,37 @@ const BetBuilderCard = ({ data }) => {
           </View>
         </View>
         <View className="flex flex-row items-center justify-center gap-x-1 ">
-          {data.status === "Upcoming" ? <ClockSvg /> : <CheckCircleSvg />}
+          {data.status === "Upcoming" ? (
+            // Show ClockSvg if the status is "Upcoming"
+            <ClockSvg />
+          ) : data.status === "Completed" || data.status === "Running" ? (
+            // Check conditions if status is "Completed"
+            data.conditions.some((item) => item.status === "No") ? (
+              // If any condition has status "No", show WrongSvg
+              <WrongBigSvg />
+            ) : data.conditions.every((item) => item.status === "Yes") ? (
+              // If all conditions have status "Yes", show CheckCircleSvg
+              <CheckCircleSvg />
+            ) : (
+              // If neither all "Yes" nor any "No", show default CheckCircleSvg
+              <ClockSvg />
+            )
+          ) : null}
 
           <Text
             className={`font-sfregular font-medium ${
-              data.status === "Upcoming" ? "text-[#FFAB2E]" : ""
-            } `}
+              data.status === "Upcoming" || data.status === "Running"
+                ? "text-[#FFAB2E]" // Set text color to yellow for "Upcoming"
+                : data.status === "Completed" ||
+                  (data.status === "Running" &&
+                    data.conditions.some((item) => item.status === "No"))
+                ? "text-[#F25C54]" // Set text color to red if any condition is "No"
+                : data.status === "Completed" ||
+                  (data.status === "Running" &&
+                    data.conditions.every((item) => item.status === "Yes"))
+                ? "text-[#31c163]" // Set text color to green if all conditions are "Yes"
+                : ""
+            }`}
           >
             {data.odds}
           </Text>

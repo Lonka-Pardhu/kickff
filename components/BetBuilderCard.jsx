@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import BetbuilderSvg from "../assets/svg/BetBuilderIcon";
 import RatingComponent from "./RatingComponent";
@@ -16,17 +16,17 @@ import ClockSvg from "../assets/svg/ClockIcon";
 import VoidSvg from "../assets/svg/VoidIcon";
 import WrongSvg from "../assets/svg/WrongIcon";
 import WrongBigSvg from "../assets/svg/WrongIconBig";
+import CheckCircleBigSvg from "../assets/svg/CheckCircleBigIcon";
 
 const BetBuilderCard = ({ data }) => {
   const router = useRouter();
 
-  console.log("DATA", data);
   return (
     <TouchableOpacity
       onPress={() =>
         router.push({
           pathname: `/pickem/betbuilder`,
-          params: { id: 1 },
+          params: { data: JSON.stringify(data) }, // Stringify the object
         })
       }
       style={styles.cardShadow}
@@ -73,7 +73,7 @@ const BetBuilderCard = ({ data }) => {
               <WrongBigSvg />
             ) : data.conditions.every((item) => item.status === "Yes") ? (
               // If all conditions have status "Yes", show CheckCircleSvg
-              <CheckCircleSvg />
+              <CheckCircleBigSvg />
             ) : (
               // If neither all "Yes" nor any "No", show default CheckCircleSvg
               <ClockSvg />

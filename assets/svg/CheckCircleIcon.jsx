@@ -1,15 +1,18 @@
-import Svg, { Path } from "react-native-svg";
+import Svg, { Path, Circle } from "react-native-svg";
 const CheckCircleSvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={10.01}
-    height={10.01}
+    width={10}
+    height={10}
+    fill="none"
     {...props}
   >
+    <Circle cx={5} cy={5} r={5} fill="#31C163" />
     <Path
-      fill="#31c163"
-      d="M5.005 0a5 5 0 1 0 5 5 5.011 5.011 0 0 0-5-5Zm2.166 3.979L4.55 6.6a.4.4 0 0 1-.57 0L2.839 5.46a.403.403 0 1 1 .57-.571l.855.855 2.333-2.335a.403.403 0 0 1 .57.571Z"
-      data-name="Path 2671"
+      fill="#fff"
+      fillRule="evenodd"
+      d="M7.822 4.27a.6.6 0 0 0 .002-.846.595.595 0 0 0-.843-.002L4.278 6.125 3.27 5.118a.6.6 0 0 0-.846-.002.595.595 0 0 0-.002.843l1.42 1.42c.06.06.128.104.202.133a.595.595 0 0 0 .66-.124L7.823 4.27Z"
+      clipRule="evenodd"
     />
   </Svg>
 );

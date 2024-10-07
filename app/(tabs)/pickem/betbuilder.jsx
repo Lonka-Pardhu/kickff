@@ -5,21 +5,39 @@ import {
   ScrollView,
   StyleSheet,
   Platform,
+  Image,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StatusBarComponent from "../../../components/customStatusBar";
 import Feather from "@expo/vector-icons/Feather";
 import BetbuilderSvg from "../../../assets/svg/BetBuilderIcon";
 import MadridSvg from "../../../assets/svg/MadridIcon";
 import BarcelonaSvg from "../../../assets/svg/BarcelonaIcon";
 import CheckCircleSvg from "../../../assets/svg/CheckCircleIcon";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import RatingComponent from "../../../components/RatingComponent";
 import StarSvg from "../../../assets/svg/StarIcon";
 import CornerDesignSvg from "../../../assets/svg/CornerDesignIcon";
+import WrongBigSvg from "../../../assets/svg/WrongIconBig";
+import CheckCircleBigSvg from "../../../assets/svg/CheckCircleBigIcon";
+import FormatDate from "../../../helpers/FormatDate";
+import WrongSvg from "../../../assets/svg/WrongIcon";
+import VoidSvg from "../../../assets/svg/VoidIcon";
+import RoundCircleSvg from "../../../assets/svg/RoundCircleIcon";
 
 const betbuilder = () => {
   const router = useRouter();
+  const params = useLocalSearchParams();
+  const [predictionData, setPredictionData] = useState({});
+
+  useEffect(() => {
+    if (params && params.data) {
+      const parsedData = JSON.parse(params.data);
+      setPredictionData(parsedData);
+      // console.log(parsedData.conditions);
+    }
+  }, []);
+
   return (
     <StatusBarComponent>
       <ScrollView className="bg-white flex-1">
@@ -41,93 +59,129 @@ const betbuilder = () => {
                   <View className="flex flex-row items-center gap-x-1">
                     <BetbuilderSvg />
                     <Text className="font-sfregular text-[8px] text-[#b7b7b7] tracking-widest">
-                      12 MAR 4:30 AM
+                      {FormatDate(predictionData?.start_at)}
                     </Text>
                   </View>
                 </View>
                 <View className="flex flex-row items-center pr-6 py-3 justify-between">
                   <View className="flex flex-row items-center gap-x-3">
                     <View className="flex flex-row gap-x-1">
-                      <BarcelonaSvg />
-                      <MadridSvg />
+                      <Image
+                        src={predictionData?.team1?.icon}
+                        className="h-[15.52px] w-[14.16px]"
+                        resizeMode="contain"
+                      />
+                      <Image
+                        src={predictionData?.team2?.icon}
+                        className="h-[15.52px] w-[14.16px]"
+                        resizeMode="contain"
+                      />
                     </View>
                     <View className="flex flex-col">
-                      <Text className="font-sfsemibold">Barcelona</Text>
-                      <Text className="font-sfsemibold">Real Madrid</Text>
+                      <Text className="font-sfsemibold">
+                        {predictionData?.team1?.name}
+                      </Text>
+                      <Text className="font-sfsemibold">
+                        {predictionData?.team2?.name}
+                      </Text>
                     </View>
                   </View>
-                  <View className="flex flex-row items-center justify-center gap-x-1 ">
-                    <CheckCircleSvg />
-                    <Text className="font-sfregular font-medium text-[#FFAB2E]">
-                      2.54
-                    </Text>
-                  </View>
+                  {predictionData && (
+                    <View className="flex flex-row items-center justify-center gap-x-1 ">
+                      {predictionData.status === "Upcoming" ? (
+                        // Show ClockSvg if the status is "Upcoming"
+                        <ClockSvg />
+                      ) : predictionData.status === "Completed" ||
+                        predictionData.status === "Running" ? (
+                        // Check conditions if status is "Completed"
+                        predictionData.conditions.some(
+                          (item) => item.status === "No"
+                        ) ? (
+                          // If any condition has status "No", show WrongSvg
+                          <WrongBigSvg />
+                        ) : predictionData.conditions.every(
+                            (item) => item.status === "Yes"
+                          ) ? (
+                          // If all conditions have status "Yes", show CheckCircleSvg
+                          <CheckCircleBigSvg />
+                        ) : (
+                          // If neither all "Yes" nor any "No", show default CheckCircleSvg
+                          <ClockSvg />
+                        )
+                      ) : null}
+
+                      <Text
+                        className={`font-sfregular font-medium ${
+                          predictionData.status === "Upcoming" ||
+                          predictionData.status === "Running"
+                            ? "text-[#FFAB2E]" // Set text color to yellow for "Upcoming"
+                            : predictionData.status === "Completed" ||
+                              (predictionData.status === "Running" &&
+                                predictionData.conditions.some(
+                                  (item) => item.status === "No"
+                                ))
+                            ? "text-[#F25C54]" // Set text color to red if any condition is "No"
+                            : predictionData.status === "Completed" ||
+                              (predictionData.status === "Running" &&
+                                predictionData.conditions.every(
+                                  (item) => item.status === "Yes"
+                                ))
+                            ? "text-[#31c163]" // Set text color to green if all conditions are "Yes"
+                            : ""
+                        }`}
+                      >
+                        {predictionData.odds}
+                      </Text>
+                    </View>
+                  )}
                 </View>
               </View>
+
               <View className="px-4">
-                <View className="flex flex-row items-center justify-between -mt-[14px]">
-                  <View className="flex flex-row items-center">
-                    <CheckCircleSvg />
-                    <View className="ml-2">
-                      <Text className="font-sfsemibold text-[#0158C5]">
-                        Barcelona
-                      </Text>
-                      <Text className="font-sfsemibold text-[#b7b7b7] text-[8px]">
-                        FULL TIME RESULT
-                      </Text>
-                    </View>
-                  </View>
-                  <RatingComponent rating={4} />
-                </View>
-                <View
-                  className={`bg-[#D4D4D4] w-[2px] h-[50px] ${
-                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
-                  } ml-1`}
-                ></View>
-                <View
-                  className={`flex flex-row items-center justify-between ${
-                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
-                  }`}
-                >
-                  <View className="flex flex-row items-center">
-                    <CheckCircleSvg />
-                    <View className="ml-2">
-                      <View className="flex flex-row items-center gap-x-1">
-                        <Text className="font-sfsemibold text-[#0158C5]">
-                          Over 2.5
-                        </Text>
-                        <StarSvg />
+                {predictionData?.conditions?.map((item, index) => {
+                  return (
+                    <>
+                      <View
+                        key={index}
+                        className="flex flex-row items-center justify-between -mt-[14px]"
+                      >
+                        <View className="flex flex-row items-center">
+                          {item.status === "Idle" ? (
+                            <RoundCircleSvg />
+                          ) : item.status === "Yes" ? (
+                            <CheckCircleSvg />
+                          ) : item.status === "No" ? (
+                            <WrongSvg />
+                          ) : item.status === "Void" ? (
+                            <VoidSvg />
+                          ) : null}
+                          <View className="ml-2">
+                            <Text
+                              className={`font-sfsemibold ${
+                                item.status === "Void"
+                                  ? "text-[#8A8A8E] line-through"
+                                  : "text-[#0158C5]"
+                              } `}
+                            >
+                              {item.title}
+                            </Text>
+                            <Text className="font-sfsemibold text-[#b7b7b7] text-[8px]">
+                              {item.option.name}
+                            </Text>
+                          </View>
+                        </View>
+                        <RatingComponent rating={item.rating} />
                       </View>
-                      <Text className="font-sfsemibold text-[#b7b7b7] text-[8px]">
-                        Total Goals
-                      </Text>
-                    </View>
-                  </View>
-                  <RatingComponent rating={3} />
-                </View>
-                <View
-                  className={`bg-[#D4D4D4] w-[2px] h-[50px] ${
-                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
-                  } ml-1`}
-                ></View>
-                <View
-                  className={`flex flex-row items-center justify-between ${
-                    Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
-                  }`}
-                >
-                  <View className="flex flex-row items-center">
-                    <CheckCircleSvg />
-                    <View className="ml-2">
-                      <Text className="font-sfsemibold text-[#0158C5]">
-                        Yes
-                      </Text>
-                      <Text className="font-sfsemibold text-[#b7b7b7] text-[8px]">
-                        Both Teams To Score
-                      </Text>
-                    </View>
-                  </View>
-                  <RatingComponent rating={5} />
-                </View>
+                      {index !== predictionData.conditions.length - 1 && (
+                        <View
+                          className={`bg-[#D4D4D4] w-[2px] h-[50px] ${
+                            Platform.OS === "ios" ? " -mt-[8px]" : "-mt-[14px]"
+                          } ml-1`}
+                        ></View>
+                      )}
+                    </>
+                  );
+                })}
               </View>
             </View>
             <CornerDesignSvg />
@@ -148,6 +202,3 @@ const styles = StyleSheet.create({
 });
 
 export default betbuilder;
-
-//! render the joining line only when there is next bet build in the data
-//! render join icon according to data (yellow, correct, wrong, wide)

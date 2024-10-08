@@ -19,6 +19,8 @@ import LightBulbSvg from "../../../assets/svg/LightBulbIcon";
 import SpeedometerSvg from "../../../assets/svg/SpeedometerIcon";
 import { PaperProvider, ProgressBar, MD3Colors } from "react-native-paper";
 import FormatDate from "../../../helpers/FormatDate";
+import WrongSvg from "../../../assets/svg/WrongIcon";
+import CheckCircleSvg from "../../../assets/svg/CheckCircleIcon";
 
 const singlebet = () => {
   const router = useRouter();
@@ -97,7 +99,7 @@ const singlebet = () => {
                       {predictionData?.team2?.name}
                     </Text>
                     {predictionData.team2_score !== "null" && (
-                      <Text className="font-sfsemibold text-[#979797]">
+                      <Text className="font-sfsemibold">
                         {predictionData?.team2_score}
                       </Text>
                     )}

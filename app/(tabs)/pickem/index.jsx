@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Platform,
   Alert,
+  Image,
 } from "react-native";
 import StatusBarComponent from "../../../components/customStatusBar";
 import React, { useEffect, useState } from "react";
@@ -22,6 +23,7 @@ import { getSportPickems } from "../../../services/ApiCalls";
 import Spinner from "react-native-loading-spinner-overlay";
 import { useAuth } from "../../../context/AuthContext";
 import { useRouter } from "expo-router";
+import images from "../../../constants/images";
 
 const pickem = () => {
   const width = Dimensions.get("window").width;
@@ -42,7 +44,6 @@ const pickem = () => {
         formData.append("status", activeCategory);
         const pickemsRes = await getSportPickems(formData, userToken);
         if (pickemsRes && pickemsRes?.status === 200) {
-          console.log(pickemsRes.data.pickemspickemsRes);
           setPickemsData(pickemsRes.data.pickems);
         }
       } catch (error) {
@@ -128,24 +129,38 @@ const pickem = () => {
                 </View>
               </TouchableOpacity>
             </View>
+            {pickemsData.length > 0 ? (
+              <View className="px-4 py-2 flex flex-col items-center justify-center">
+                {pickemsData.map((pickem, index) => {
+                  switch (pickem.model) {
+                    case "BetBuilder":
+                      return <BetBuilderCard key={index} data={pickem.data} />;
 
-            <View className="px-4 py-2 flex flex-col items-center justify-center ">
-              {pickemsData.map((pickem, index) => {
-                switch (pickem.model) {
-                  case "BetBuilder":
-                    return <BetBuilderCard key={index} data={pickem.data} />;
+                    case "Parlay":
+                      return <ParalayCard key={index} data={pickem.data} />;
 
-                  case "Parlay":
-                    return <ParalayCard key={index} data={pickem.data} />;
+                    case "Prediction":
+                      return <SinglePredCard key={index} data={pickem.data} />;
 
-                  case "Prediction":
-                    return <SinglePredCard key={index} data={pickem.data} />;
-
-                  default:
-                    return null; // Handle unexpected models or just ignore
-                }
-              })}
-            </View>
+                    default:
+                      return null;
+                  }
+                })}
+              </View>
+            ) : (
+              <View className="px-4 py-2 flex flex-col items-center justify-center">
+                <Image
+                  source={images.WaitingGuyImage}
+                  className="w-[215px] h-[170px]"
+                  resizeMode="contain"
+                />
+                <Text className="text-[#979797] font-sfregular text-[11px]">
+                  matches are{" "}
+                  <Text className="font-pcuregular text-[#F25C54]">not</Text>{" "}
+                  available.
+                </Text>
+              </View>
+            )}
           </ScrollView>
         </StatusBarComponent>
       </GestureHandlerRootView>

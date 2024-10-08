@@ -10,6 +10,7 @@ import { TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import BarcelonaSvg from "../assets/svg/BarcelonaIcon";
 import CheckCircleSvg from "../assets/svg/CheckCircleIcon";
+import WrongSvg from "../assets/svg/WrongIcon";
 
 const formatDate = (dateString) => {
   const dateObj = new Date(dateString);

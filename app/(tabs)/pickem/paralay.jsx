@@ -31,7 +31,6 @@ const paralay = () => {
     if (params && params.data) {
       const parsedData = JSON.parse(params.data);
       setPredictionData(parsedData);
-      console.log(parsedData.conditions);
     }
   }, []);
 
@@ -94,7 +93,7 @@ const paralay = () => {
                           {item.status === "Idle" ? (
                             <RoundCircleSvg />
                           ) : item.status === "Yes" ? (
-                            <CheckCircleBigSvg />
+                            <CheckCircleSvg />
                           ) : item.status === "No" ? (
                             <WrongSvg />
                           ) : item.status === "Void" ? (
@@ -120,6 +119,11 @@ const paralay = () => {
                           <Text className="text-[#b6b6b6] font-sfregular text-[11px]  leading-[12px]">
                             {item.team1.name} vs {item.team2.name}
                           </Text>
+                          {item.score !== "null" && (
+                            <Text className="font-sfsemibold text-[12px]">
+                              {item.score}
+                            </Text>
+                          )}
                         </View>
                       </View>
                     </View>

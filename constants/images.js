@@ -11,6 +11,7 @@ import WelomeImg3 from "../assets/images/welcomeImg3.png";
 import CoinsBanner from "../assets/images/coinsBanner.png";
 import StarImage from "../assets/images/starImg.png";
 import HandshakeImage from "../assets/images/handshake.png";
+import WaitingGuyImage from "../assets/images/waitingGuyImg.png";
 
 export default {
   HomeImg1,
@@ -26,4 +27,5 @@ export default {
   CoinsBanner,
   StarImage,
   HandshakeImage,
+  WaitingGuyImage,
 };

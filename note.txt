@@ -1,15 +1,9 @@
 /My side
 
-//prediction card
-//add coin if its not free and check design
+//every time user goes to other screen from pickem and comes back to pickem again revalidate data or rehit api for updated data every time 
+//prediction card add coin if its not free and check design
 //add coins on the top right of the picks header
 //coins part design in profile
 //play console payment process (RnD)? (In App Purchase)
 //sports order api integratio and set sports order integration
 //changing sports order as soon as set-sports is changed
-
-
-//Hemanth
-
-// should add status data for each condition
-// should add title data for each condition

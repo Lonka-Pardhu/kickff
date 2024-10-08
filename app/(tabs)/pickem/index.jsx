@@ -47,7 +47,7 @@ const pickem = () => {
           setPickemsData(pickemsRes.data.pickems);
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
         if (error?.response?.status === 401) {
           Alert.alert("Something went wrong!🧐", "Please login.", [
             {

@@ -93,3 +93,12 @@ export const getSports = async (token) => {
     },
   });
 };
+
+export const setSportOrder = async (formData, token) => {
+  return await axios.post(`${API_URL}/set-sports-order`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};

@@ -55,10 +55,8 @@ const password = () => {
         resetForm();
       }
     } catch (error) {
-      console.error(error.response);
       console.log(error.response);
-      console.log(error);
-      // setApiErr(error.response);
+      setApiErr(error.response.data.error);
     } finally {
       setIsLoading(false);
     }

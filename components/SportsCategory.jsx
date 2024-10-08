@@ -111,7 +111,7 @@ const SportsCategory = () => {
           {sports?.map((sport, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => setActiveSport(sport.category.name)}
+              onPress={() => setActiveSport(sport.name)}
               className="flex flex-col items-center justify-center"
             >
               <View className="bg-[#E4E4E7] p-2 rounded-xl relative">

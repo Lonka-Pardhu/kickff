@@ -37,14 +37,16 @@ const pickem = () => {
     const fetchPickems = async () => {
       try {
         const formData = new FormData();
-        formData.append("category_id", 4);
+        formData.append("category_id", 5);
 
         formData.append("status", activeCategory);
         const pickemsRes = await getSportPickems(formData, userToken);
         if (pickemsRes && pickemsRes?.status === 200) {
+          console.log(pickemsRes.data.pickemspickemsRes);
           setPickemsData(pickemsRes.data.pickems);
         }
       } catch (error) {
+        console.error(error);
         if (error?.response?.status === 401) {
           Alert.alert("Something went wrong!🧐", "Please login.", [
             {

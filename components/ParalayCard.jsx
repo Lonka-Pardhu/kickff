@@ -22,7 +22,7 @@ const ParalayCard = ({ data }) => {
       onPress={() =>
         router.push({
           pathname: `/pickem/paralay`,
-          params: { id: 1 },
+          params: { data: JSON.stringify(data) }, // Stringify the object
         })
       }
       style={styles.cardShadow}

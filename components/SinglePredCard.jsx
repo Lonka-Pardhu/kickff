@@ -39,6 +39,7 @@ const formatDate = (dateString) => {
 const SinglePredCard = ({ data }) => {
   const router = useRouter();
   const { day, month, time } = formatDate(data.start_at);
+
   return (
     <TouchableOpacity
       onPress={() =>
@@ -58,9 +59,9 @@ const SinglePredCard = ({ data }) => {
               style={{ backgroundColor: data.league.color }}
             ></View>
             <Image
-              source={data.league.icon}
+              source={{ uri: data.league.icon }}
               className="h-[40px] w-[40px]"
-              resizeMode="contain"
+              resizeMode="cover"
             />
           </View>
           <View className="flex flex-col">
@@ -99,9 +100,7 @@ const SinglePredCard = ({ data }) => {
                   className="h-[15.52px] w-[14.16px]"
                   resizeMode="contain"
                 />
-                <Text className="font-sfsemibold text-[#979797]">
-                  {data.team2.name}
-                </Text>
+                <Text className="font-sfsemibold">{data.team2.name}</Text>
               </View>
               {/* <Text className="font-sfsemibold text-[#979797]">0</Text> */}
             </View>

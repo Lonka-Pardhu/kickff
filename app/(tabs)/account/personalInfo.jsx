@@ -57,7 +57,7 @@ const personalInfo = () => {
       setIsLoading(true);
       const formData = new FormData();
       formData.append("first_name", values.firstName);
-      // formData.append("last_name", values.lastName);
+      formData.append("last_name", values.lastName);
       formData.append("username", values.username);
       formData.append("email", values.email);
       const updateProfileRes = await updateProfile(formData, userToken);
@@ -86,7 +86,7 @@ const personalInfo = () => {
   } = useFormik({
     initialValues: {
       firstName: "",
-      // lastName: "",
+      lastName: "",
       username: "",
       email: "",
     },
@@ -147,7 +147,7 @@ const personalInfo = () => {
                       </Text>
                     )}
                   </View>
-                  {/* <View className="w-full">
+                  <View className="w-full">
                     <TextInput
                       editable={disableFields}
                       onChangeText={(e) => {
@@ -158,16 +158,17 @@ const personalInfo = () => {
                       }}
                       onBlur={handleBlur("lastName")}
                       value={values.lastName}
-className={`bg-[#f2f2f2] ${
+                      className={`bg-[#f2f2f2] ${
                         Platform.OS === "ios" ? "h-11" : ""
-                      } font-sfregular px-2 py-2 rounded-sm w-full`}                      placeholder="Last Name"
+                      } font-sfregular px-2 py-2 rounded-sm w-full`}
+                      placeholder="Last Name"
                     />
                     {errors.lastName && touched.lastName && (
                       <Text className="self-start text-red-500 text-sm font-sfregular ">
                         {errors.lastName}
                       </Text>
                     )}
-                  </View> */}
+                  </View>
 
                   <View className="w-full">
                     <TextInput

@@ -141,11 +141,8 @@ const betbuilder = () => {
               <View className="px-4">
                 {predictionData?.conditions?.map((item, index) => {
                   return (
-                    <>
-                      <View
-                        key={index}
-                        className="flex flex-row items-center justify-between -mt-[14px]"
-                      >
+                    <View key={index}>
+                      <View className="flex flex-row items-center justify-between -mt-[14px]">
                         <View className="flex flex-row items-center">
                           {item.status === "Idle" ? (
                             <RoundCircleSvg />
@@ -183,7 +180,7 @@ const betbuilder = () => {
                           } ml-1`}
                         ></View>
                       )}
-                    </>
+                    </View>
                   );
                 })}
               </View>

@@ -1,29 +1,15 @@
-last_name is not provided in profile api (want it for edit profile screen)
-
-getpredictions(single bet)
-color code of the league is not prvided
-league image is not provided
-teams svg icons is not provided
-//want the above things for app user
-
-get-sport-predictions api not working //RECHECK
-want predictions according to (all, upcoming, completed) 
-
-
-//need edit category option and add svg in admin panel so that bavana can add the correct sport icons, which will help me integrate sports order api
-
-//need proper api data and format for the predictions, betbuilder, and paralays 
-//cant use admin panel apis for app, a lot of details are missing which needed to be shown in the app.
-
-
-
-//My side 
+/My side
 
 //prediction card
-add coin if its not free and check design
-see completed key spelling C or c ? 
-and show timer icon for both upcoming and running and checkmark or only completed
-
+//add coin if its not free and check design
 //add coins on the top right of the picks header
 //coins part design in profile
-//play console payment process (RnD)?
+//play console payment process (RnD)? (In App Purchase)
+//sports order api integratio and set sports order integration
+//changing sports order as soon as set-sports is changed
+
+
+//Hemanth
+
+// should add status data for each condition
+// should add title data for each condition

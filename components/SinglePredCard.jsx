@@ -45,7 +45,7 @@ const SinglePredCard = ({ data }) => {
       onPress={() =>
         router.push({
           pathname: `/pickem/singlebet`,
-          params: { id: 1 },
+          params: { data: JSON.stringify(data) }, // Stringify the object
         })
       }
       style={styles.cardShadow}
@@ -91,7 +91,9 @@ const SinglePredCard = ({ data }) => {
                 />
                 <Text className="font-sfsemibold">{data.team1.name}</Text>
               </View>
-              {/* <Text className="font-sfsemibold">2</Text> */}
+              {data.team1_score !== "null" && (
+                <Text className="font-sfsemibold m-1">{data.team1_score}</Text>
+              )}
             </View>
             <View className="flex flex-row items-center justify-between">
               <View className="flex flex-row items-center gap-x-2 ">
@@ -102,12 +104,30 @@ const SinglePredCard = ({ data }) => {
                 />
                 <Text className="font-sfsemibold">{data.team2.name}</Text>
               </View>
-              {/* <Text className="font-sfsemibold text-[#979797]">0</Text> */}
+              {data.team2_score !== "null" && (
+                <Text className="font-sfsemibold m-1">{data.team2_score}</Text>
+              )}
             </View>
           </View>
           <View className="flex flex-row items-center justify-center gap-x-1 ">
-            {data.status === "Upcoming" ? <ClockSvg /> : <CheckCircleSvg />}
-            <Text className="font-sfregular font-medium text-[#FFAB2E]">
+            {data.status === "Upcoming" ? (
+              <ClockSvg />
+            ) : data.result === "No" ? (
+              <WrongSvg />
+            ) : data.result === "Yes" ? (
+              <CheckCircleSvg />
+            ) : null}
+            <Text
+              className={`font-sfregular font-medium ${
+                data.status === "Upcoming"
+                  ? "text-[#FFAB2E]"
+                  : data.result === "No"
+                  ? "text-[#F25C54]"
+                  : data.result === "Yes"
+                  ? "text-[#31c163]"
+                  : ""
+              }`}
+            >
               {data.odds}
             </Text>
           </View>

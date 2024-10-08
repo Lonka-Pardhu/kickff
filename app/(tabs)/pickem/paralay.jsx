@@ -110,7 +110,7 @@ const paralay = () => {
                                   : "text-[#0158C5]"
                               } font-sfsemibold text-[12px] leading-[12px]`}
                             >
-                              {/* {item.option.title} or item.title */}
+                              {item.title}
                             </Text>
                             {item.is_star === "1" && <StarSvg />}
                           </View>

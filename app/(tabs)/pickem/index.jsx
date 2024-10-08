@@ -37,7 +37,7 @@ const pickem = () => {
     const fetchPickems = async () => {
       try {
         const formData = new FormData();
-        formData.append("category_id", 5);
+        formData.append("category_id", 4);
 
         formData.append("status", activeCategory);
         const pickemsRes = await getSportPickems(formData, userToken);

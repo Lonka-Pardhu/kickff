@@ -51,7 +51,9 @@ const ParalayCard = ({ data }) => {
             <ClockSvg />
           ) : data.status === "Completed" || data.status === "Running" ? (
             // Check conditions if status is "Completed"
-            data.conditions.some((item) => item.status === "No") ? (
+            data.conditions.some(
+              (item) => item.status === "No" || item.status === "Void"
+            ) ? (
               // If any condition has status "No", show WrongSvg
               <WrongBigSvg />
             ) : data.conditions.every((item) => item.status === "Yes") ? (

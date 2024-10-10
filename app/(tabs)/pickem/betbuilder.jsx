@@ -119,7 +119,9 @@ const betbuilder = () => {
                             : predictionData.status === "Completed" ||
                               (predictionData.status === "Running" &&
                                 predictionData.conditions.some(
-                                  (item) => item.status === "No"
+                                  (item) =>
+                                    item.status === "No" ||
+                                    item.status === "Void"
                                 ))
                             ? "text-[#F25C54]" // Set text color to red if any condition is "No"
                             : predictionData.status === "Completed" ||

@@ -86,7 +86,9 @@ const BetBuilderCard = ({ data }) => {
                 ? "text-[#FFAB2E]" // Set text color to yellow for "Upcoming"
                 : data.status === "Completed" ||
                   (data.status === "Running" &&
-                    data.conditions.some((item) => item.status === "No"))
+                    data.conditions.some(
+                      (item) => item.status === "No" || item.status === "Void"
+                    ))
                 ? "text-[#F25C54]" // Set text color to red if any condition is "No"
                 : data.status === "Completed" ||
                   (data.status === "Running" &&

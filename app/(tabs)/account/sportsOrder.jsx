@@ -10,14 +10,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { getSports, setSportOrder } from "../../../services/ApiCalls";
 import { useAuth } from "../../../context/AuthContext";
-import { SvgUri, SvgXml } from "react-native-svg";
+import { SvgXml } from "react-native-svg";
 import Spinner from "react-native-loading-spinner-overlay";
 
 const sportsOrder = () => {
   const { userToken } = useAuth();
   const [sportsOrderData, setSportsOrderData] = useState([]); // Use sports as initial data
   const [isLoading, setIsLoading] = useState(false);
-  const [activeDragItem, setActiveDragItem] = useState(null); // Use sports as initial data
+  const [activeDragItem, setActiveDragItem] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
